@@ -26,14 +26,7 @@ function renderQuestion(){
  answered=false;
 }
 function updateProgress(){const percent=Math.round(correctSet.size/questions.length*100);document.getElementById("progressBar").style.width=percent+"%";document.getElementById("progressText").textContent=`جاوبت صح على ${correctSet.size} من ${questions.length} أسئلة (${percent}٪).`}
-
-else {
-  notify(`خلصت المراجعة! إجاباتك الصح ${correctSet.size} من ${questions.length}.`);
-  qIndex = 0;
-  correctSet.clear();
-  updateProgress();
-  renderQuestion();
-}
+document.getElementById("nextQuestion").addEventListener("click",()=>{if(!answered){notify("اختار إجابة الأول يا بطل!");return}if(qIndex<questions.length-1){qIndex++;renderQuestion()}else{notify(`خلصت المراجعة! إجاباتك الصح ${correctSet.size} من ${questions.length}.`);qIndex=0;correctSet.clear();updateProgress();renderQuestion()}});
 const answers=[
  {keys:["إيدي","ايدي","أطراف","صوابع","اصابع","أصابع"],text:"افرد صوابعك بشكل مريح وخليها تلامس الكورة، وادفعها لتحت برفق. بلاش تضربها براحة إيدك."},
  {keys:["أبص","ابص","بص","قدامي","الملعب","الأرض","الارض"],text:"حاول تبص لقدام عشان تشوف الملعب وأصحابك، ومش لازم تفضل باصص للكورة طول الوقت."},
