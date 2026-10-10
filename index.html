@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17478f">
+  <title>المنصة التكنولوجية لتعليم كرة السلة</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app">
+    <section id="splashPage" class="splash-page page active" aria-label="ترحيب">
+      <div class="splash-rings"></div>
+      <div class="splash-lockup">
+        <img src="images/robot-icon.png" alt="روبوت المنصة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="image-placeholder splash-placeholder">images/robot-icon.png</div><span class="splash-divider"></span><span class="splash-welcome">welcome</span>
+      </div><div class="splash-loader"><span></span></div>
+    </section>
+    <!-- شاشة الدخول -->
+    <section id="loginPage" class="login-page page active">
+      <div class="login-decoration"></div>
+      <div class="login-brand">
+        <div class="brand-mark">🏀</div>
+        <p>المنصة التكنولوجية<br>لتعليم كرة السلة</p>
+      </div>
+      <div class="login-art">
+        <!-- ضع صورة الروبوت الكبيرة في images/login-robot.png -->
+        <img src="images/login-robot.png" alt="الروبوت الرياضي" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="image-placeholder robot-placeholder">ضع صورة الروبوت هنا<br><small>images/login-robot.png</small></div>
+      </div>
+      <form id="loginForm" class="login-form">
+        <div class="login-label">LOGIN</div>
+        <h1>تسجيل الدخول</h1>
+        <p class="english-subtitle">Login with your ID</p>
+        <label for="studentId" class="sr-only">الرقم القومي</label>
+        <input id="studentId" inputmode="numeric" maxlength="14" placeholder="أدخل الرقم القومي الخاص بالطالب" required>
+        <button class="btn btn-cream" type="submit">تسجيل</button>
+        <p class="hint">للتجربة الأولية، أدخل أي رقم مكوّن من 6 أرقام على الأقل.</p>
+      </form>
+    </section>
+
+    <!-- الصفحة الافتتاحية -->
+    <section id="welcomePage" class="welcome-page page">
+      <header class="welcome-top">
+        <div class="arabic-title">المنصة التكنولوجية<br>لتعليم كرة السلة</div>
+        <div class="welcome-english">The Technological Platform<br>For Basketball</div>
+      </header>
+      <div class="welcome-center">
+        <div class="welcome-copy">
+          <div class="welcome-logo-lockup">
+            <img src="images/robot-icon.png" alt="شعار روبوت المنصة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="image-placeholder">images/robot-icon.png</div><span class="welcome-logo-divider"></span><span class="script-word">welcome</span>
+          </div>
+          <!-- ضع صورة مجموعة الطلاب في images/welcome-students.png -->
+          <img src="images/welcome-students.png" alt="طلاب يتعلمون كرة السلة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="image-placeholder students-placeholder">ضع صورة الطلاب والروبوت هنا<br><small>images/welcome-students.png</small></div>
+        </div>
+      </div>
+      <button id="startBtn" class="btn btn-orange start-btn">ابدأ الآن</button>
+      <footer class="welcome-footer">powered by | Karim Hamdy</footer>
+    </section>
+
+    <!-- لوحة التحكم -->
+    <section id="dashboardPage" class="dashboard-page page">
+      <aside class="sidebar">
+        <div class="sidebar-logo">🏀</div>
+        <button class="side-btn" data-action="add" title="إضافة">＋</button>
+        <button class="side-btn" data-action="lessons" title="المهارات">▧</button>
+        <button class="side-btn" data-action="open-review" title="مراجعة">↗</button>
+        <button class="side-btn bookmark" data-action="saved" title="المحفوظات">▮</button>
+        <div class="sidebar-spacer"></div>
+        <button class="side-btn" data-action="settings" title="الإعدادات">⚙</button>
+      </aside>
+      <div class="main-area">
+        <header class="dashboard-hero">
+          <div class="profile">
+            <span class="search-icon">⌕</span>
+            <span class="avatar">👨🏻‍🏫</span>
+            <span><b id="studentName">الطالب</b><small>الصف الأول الإعدادي</small></span>
+          </div>
+          <div class="hero-ball"><img src="images/hero-basketball.png" alt="كرة سلة كبيرة" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="ball-fallback">🏀</span></div>
+        </header>
+        <div class="dashboard-content">
+          <div class="section-heading">
+            <h1>مرحبًا بك في منصة كرة السلة</h1>
+            <p>تعلّم، تدرّب، واختبر مهاراتك خطوة بخطوة.</p>
+          </div>
+          <div class="dashboard-cards">
+            <button class="feature-card skills-card" data-action="lessons">
+              <div class="feature-image blue-image">
+                <img src="images/skills-robot.png" alt="الروبوت أثناء ممارسة المهارة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <div class="image-placeholder">صورة مهارات كرة السلة<br><small>images/skills-robot.png</small></div>
+              </div>
+              <div class="feature-text"><span class="round-icon">✎</span><h2>المهارات التي تم دراستها</h2><p>تعرّف على المهارات الأساسية التي درستها داخل المدرسة.</p></div>
+            </button>
+            <button class="feature-card review-card" data-action="open-review">
+              <div class="feature-image red-image">
+                <img src="images/review-robot.png" alt="الروبوت أثناء المراجعة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <div class="image-placeholder">صورة الروبوت للمراجعة<br><small>images/review-robot.png</small></div>
+              </div>
+              <div class="feature-text"><span class="round-icon">?</span><h2>مراجعة المهارات</h2><p>راجع معلوماتك من خلال أسئلة تفاعلية حول المهارات.</p></div>
+            </button>
+            <button class="feature-card chatbot-card" data-action="open-chat">
+              <div class="feature-image phone-image">
+                <img src="images/chatbot-robot.png" alt="المساعد الذكي" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <div class="image-placeholder">صورة المساعد الذكي<br><small>images/chatbot-robot.png</small></div>
+                <span class="phone-title">AI Chatbot</span>
+              </div>
+              <div class="feature-text"><h2>نموذج المساعد الذكي <em>(صديق المعلم)</em></h2><p>اسأل عن المهارات الأساسية في كرة السلة.</p><span class="btn btn-orange mini-btn">هيا بنا</span></div>
+            </button>
+          </div>
+          <div class="progress-strip">
+            <div><b>تقدمك التعليمي</b><span id="progressText">أنجز أول درس لتبدأ رحلتك!</span></div>
+            <div class="progress-track"><span id="progressBar"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- صفحة المهارات -->
+    <section id="lessonsPage" class="content-page page">
+      <header class="content-header">
+        <button class="back-btn" data-action="dashboard">→</button>
+        <div><h1>المهارات التي تم دراستها</h1><p>اختر مهارة لعرض شرحها ومتابعة تعلمك.</p></div>
+        <span class="header-ball">🏀</span>
+      </header>
+      <div class="lesson-grid">
+        <button class="lesson-card" data-lesson="dribble">
+          <img src="images/lesson-dribbling.jpg" alt="التنطيط" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="image-placeholder">صورة مهارة التنطيط<br><small>images/lesson-dribbling.jpg</small></div>
+          <h2>مهارة التنطيط (المحاورة)</h2><p>التعرّف على وضع الجسم والتحكم في الكرة.</p><span class="btn btn-orange">ابدأ الدرس</span>
+        </button>
+        <button class="lesson-card" data-lesson="pass">
+          <img src="images/lesson-passing.jpg" alt="التمرير" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="image-placeholder">صورة مهارة التمرير<br><small>images/lesson-passing.jpg</small></div>
+          <h2>مهارة التمرير</h2><p>تعرّف على أساسيات توجيه الكرة لزميلك.</p><span class="btn btn-orange">قريبًا</span>
+        </button>
+        <button class="lesson-card" data-lesson="shoot">
+          <img src="images/lesson-shooting.jpg" alt="التصويب" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="image-placeholder">صورة مهارة التصويب<br><small>images/lesson-shooting.jpg</small></div>
+          <h2>مهارة التصويب</h2><p>تعرّف على الخطوات الأساسية للتصويب.</p><span class="btn btn-orange">قريبًا</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- صفحة درس التنطيط والفيديو -->
+    <section id="lessonDetailPage" class="content-page page">
+      <header class="content-header"><button class="back-btn" data-action="lessons">→</button><div><h1>مهارة التنطيط (المحاورة)</h1><p>شاهد الفيديو، ثم جرّب المهارة بنفسك.</p></div><span class="header-ball">🏀</span></header>
+      <div class="lesson-detail-card">
+        <div class="lesson-video-wrap"><video id="dribbleVideo" controls playsinline preload="metadata" poster="images/review-main.png"><source src="videos/dribbling.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><div id="videoPlaceholder" class="video-placeholder"><span>▶</span><b>فيديو مهارة التنطيط</b><small>ضع الفيديو باسم videos/dribbling.mp4</small></div></div>
+        <div class="lesson-detail-copy"><h2>خليك بطل التنطيط!</h2><ul><li>اثنِ ركبتيك قليلًا وخليك متوازن.</li><li>استخدم أطراف صوابعك، مش راحة إيدك.</li><li>ارفع راسك وبص لقدام.</li><li>ابدأ ببطء، وبعدها زوّد السرعة بالتدريج.</li></ul><div class="lesson-detail-actions"><button id="goReviewBtn" class="btn btn-orange">يلا نراجع المهارة</button><button class="btn btn-light" data-action="open-chat">اسأل صديق المعلم</button></div></div>
+      </div>
+    </section>
+    <!-- صفحة شرح المهارة والمراجعة -->
+    <section id="reviewPage" class="content-page page">
+      <header class="content-header">
+        <button class="back-btn" data-action="dashboard">→</button>
+        <div><h1>مراجعة المهارات التي تم دراستها</h1><p>اختبر فهمك لمهارة التنطيط.</p></div>
+        <span class="header-ball">🏀</span>
+      </header>
+      <div class="review-layout">
+        <div class="steps-grid">
+          <button class="step-image" data-step="1"><span>1</span><img src="images/dribble-step-1.jpg" alt="التحكم بأطراف الأصابع" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder">الصورة 1<br><small>dribble-step-1.jpg</small></div><b>أطراف الأصابع</b></button>
+          <button class="step-image" data-step="2"><span>2</span><img src="images/dribble-step-2.jpg" alt="متابعة ارتداد الكرة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder">الصورة 2<br><small>dribble-step-2.jpg</small></div><b>التحكم في الارتداد</b></button>
+          <button class="step-image" data-step="3"><span>3</span><img src="images/dribble-step-3.jpg" alt="وضع اليد" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder">الصورة 3<br><small>dribble-step-3.jpg</small></div><b>وضع اليد</b></button>
+          <button class="step-image" data-step="4"><span>4</span><img src="images/dribble-step-4.jpg" alt="دفع الكرة" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-placeholder">الصورة 4<br><small>dribble-step-4.jpg</small></div><b>دفع الكرة لأسفل</b></button>
+        </div>
+        <div class="review-question">
+          <div class="question-visual">
+            <img src="images/review-main.png" alt="الروبوت يشرح التنطيط" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="image-placeholder">صورة توضيحية للمهارة<br><small>images/review-main.png</small></div>
+          </div>
+          <h2 id="reviewQuestion">ما الجزء الأفضل للتحكم في الكرة أثناء التنطيط؟</h2>
+          <div id="reviewOptions" class="answer-options"></div>
+          <div id="imageAnswerOptions" class="image-answer-options" hidden></div>
+          <p id="reviewFeedback" class="feedback" aria-live="polite"></p>
+          <button id="nextQuestion" class="btn btn-orange">السؤال التالي ←</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- نافذة المساعد الذكي -->
+    <section id="chatPage" class="chat-page page">
+      <div class="chat-shell">
+        <header class="chat-header">
+          <button class="chat-back" data-action="dashboard" aria-label="رجوع">‹</button>
+          <div class="chat-logo"><img src="images/robot-icon.png" alt="أيقونة المساعد" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span>🤖</span></div><h1>المساعد الذكي <span>AI Chatbot</span></h1>
+          <button class="chat-info" id="chatInfo" title="حول المساعد">ⓘ</button>
+          <button class="chat-close" data-action="dashboard" aria-label="إغلاق">×</button>
+        </header>
+        <div class="chat-body">
+          <div class="chat-welcome">
+            <div class="bot-avatar"><img src="images/robot-icon.png" alt="صديق المعلم" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span>🤖🏀</span></div>
+            <div class="bot-message">إزيك يا كريم، عملت إيه في درس التنطيط النهارده؟<br>تحب تسألني عن إيه؟</div>
+          </div>
+          <p class="suggestion-title">اختار سؤالًا أو اكتب سؤالك بنفسك:</p>
+          <div id="suggestedQuestions" class="suggested-questions">
+            <button>أحط إيدي إزاي على الكورة؟</button>
+            <button>أبص على الكورة ولا قدامي؟</button>
+            <button>أثني ركبتي ليه وأنا بنطط؟</button>
+            <button>أبدأ بإيدي اليمين ولا الشمال؟</button>
+          </div>
+          <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+        </div>
+        <form id="chatForm" class="chat-input-row">
+          <input id="chatInput" placeholder="اكتب سؤالك عن كرة السلة هنا..." autocomplete="off" aria-label="اكتب سؤالك">
+          <button type="submit" aria-label="إرسال">➤</button>
+        </form>
+        <p class="chat-disclaimer">نسخة تجريبية تعليمية بإجابات معدّة مسبقًا، وليست متصلة حاليًا بنموذج ذكاء اصطناعي مباشر.</p>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
