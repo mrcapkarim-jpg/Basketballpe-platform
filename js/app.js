@@ -29,7 +29,6 @@ function updateProgress(){const percent=Math.round(correctSet.size/questions.len
 
 else {
   notify(`خلصت المراجعة! إجاباتك الصح ${correctSet.size} من ${questions.length}.`);
-  sendResultToSheet(correctSet.size, questions.length);
   qIndex = 0;
   correctSet.clear();
   updateProgress();
@@ -52,25 +51,3 @@ document.getElementById("chatInfo").addEventListener("click",()=>notify("الم�
 const video=document.getElementById("dribbleVideo"),videoPlaceholder=document.getElementById("videoPlaceholder");
 video.addEventListener("loadeddata",()=>videoPlaceholder.style.display="none");video.addEventListener("error",()=>videoPlaceholder.style.display="flex");
 renderQuestion();
-
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyekurr85LXIAkjHPxcX8B0CR-U6xCmnUfy1gT1avoRwSg_v7ZcEm7Pd5ddGdrpT7Y/exec";
-
-function sendResultToSheet(score, total) {
-  const studentId = localStorage.getItem("basketballStudentId") || "";
-
-  fetch(GOOGLE_SHEET_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify({
-      name: studentId,
-      className: "الصف الأول الإعدادي",
-      score: score,
-      total: total
-    })
-  })
-  .then(() => notify("تم إرسال النتيجة، راجع Google Sheets."))
-  .catch(() => notify("تعذّر إرسال النتيجة، حاول مرة أخرى."));
-}
