@@ -71,6 +71,7 @@ function sendResultToSheet(score, total) {
   const studentId = localStorage.getItem("basketballStudentId") || "";
   const studentName = localStorage.getItem("basketballStudentName") || "";
   const className = localStorage.getItem("basketballClassName") || "";
+  const studentSection = localStorage.getItem("basketballStudentSection") || "";
 
   fetch(GOOGLE_SHEET_URL, {
     method: "POST",
