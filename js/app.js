@@ -112,37 +112,41 @@ function sendResultToSheet(score, total) {
     })
   }).catch(error => console.error("Sheet error:", error));
 }
+
 function checkStudentDuplicate(studentId) {
   return new Promise((resolve, reject) => {
-    const callbackName =
-      "studentCheck_" + Date.now();
-
+    const callbackName = "studentCheck_" + Date.now();
     const script = document.createElement("script");
 
-    const timeout = setTimeout(() => {
+    const cleanup = () => {
       delete window[callbackName];
       script.remove();
+    };
+
+    const timeout = setTimeout(() => {
+      cleanup();
       reject(new Error("تعذر الاتصال بالشيت"));
-    }, 7000);
+    }, 6000);
 
     window[callbackName] = result => {
       clearTimeout(timeout);
-      delete window[callbackName];
-      script.remove();
+      cleanup();
       resolve(result.duplicate);
     };
 
-    script.src =
-      GOOGLE_SHEET_URL +
-      "?studentId=" + encodeURIComponent(studentId) +
-      "&callback=" + callbackName;
-
     script.onerror = () => {
       clearTimeout(timeout);
-      delete window[callbackName];
-      script.remove();
-      reject(new Error("فشل الاتصال بالشيت"));
+      cleanup();
+      reject(new Error("فشل تحميل نتيجة الفحص"));
     };
+
+    const separator = GOOGLE_SHEET_URL.includes("?") ? "&" : "?";
+
+    script.src =
+      GOOGLE_SHEET_URL +
+      separator +
+      "studentId=" + encodeURIComponent(studentId) +
+      "&callback=" + encodeURIComponent(callbackName);
 
     document.body.appendChild(script);
   });
