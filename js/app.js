@@ -115,7 +115,27 @@ await window.registerWithFirebase(
     notify("تعذر التحقق من التسجيل. تأكد من الاتصال وحاول مرة أخرى.");
   }
 });
-document.getElementById("startBtn").addEventListener("click", () => showPage("dashboardPage"));
+
+document.getElementById("startBtn").addEventListener("click", async () => {
+  try {
+    if (typeof window.checkQuizAttempt !== "function") {
+      notify("تعذر التحقق من حالة الاختبار. حدّث الصفحة وحاول مرة أخرى.");
+      return;
+    }
+
+    const completed = await window.checkQuizAttempt();
+
+    if (completed) {
+      notify("أنت أكملت المراجعة بالفعل، ولا يمكن تكرارها.");
+      return;
+    }
+
+    showPage("dashboardPage");
+  } catch (error) {
+    console.error("Check quiz attempt error:", error);
+    notify("تعذر التحقق من حالة الاختبار. تأكد من الاتصال بالإنترنت.");
+  }
+});
 document.querySelectorAll("[data-action]").forEach(button=>button.addEventListener("click",()=>{const a=button.dataset.action;if(a==="lessons")showPage("lessonsPage");else if(a==="open-review")showPage("reviewPage");else if(a==="open-chat")showPage("chatPage");else if(a==="dashboard")showPage("dashboardPage");else if(a==="saved")notify("المهارات المحفوظة هتظهر هنا لاحقًا.");else if(a==="settings")notify("الإعدادات التجريبية.");else if(a==="add")notify("تقدر تضيف دروس جديدة من ملفات المشروع.")}));
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
 document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("reviewPage"));
