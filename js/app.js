@@ -77,8 +77,9 @@ function sendResultToSheet(score, total) {
       "Content-Type": "text/plain;charset=utf-8"
     },
     body: JSON.stringify({
-      name: studentId,
-      className: "الصف الأول الإعدادي",
+      name: studentName,
+      studentId: studentId,
+      className: className,
       score: score,
       total: total
     })
