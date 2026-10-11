@@ -126,7 +126,7 @@ function checkStudentDuplicate(studentId) {
     const timeout = setTimeout(() => {
       cleanup();
       reject(new Error("تعذر الاتصال بالشيت"));
-    }, 6000);
+    }, 11000);
 
     window[callbackName] = result => {
       clearTimeout(timeout);
