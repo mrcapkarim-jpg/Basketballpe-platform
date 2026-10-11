@@ -20,12 +20,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 window.registerWithFirebase = async function(studentId, password) {
-  const email = `${studentId}@karimbasketball.local`;
+  const email = `${studentId}@karimbasketball.com`;
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
 window.loginWithFirebase = async function(studentId, password) {
-  const email = `${studentId}@karimbasketball.local`;
+  const email = `${studentId}@karimbasketball.com`;
   return signInWithEmailAndPassword(auth, email, password);
 };
 
