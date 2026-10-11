@@ -13,8 +13,8 @@ document.getElementById("loginForm").addEventListener("submit", event => {
     notify("اكتب رقمًا تجريبيًا من 6 أرقام على الأقل.");
     return;
   }
-  if (!name || !className) {
-    notify("اكتب اسم الطالب واختر الصف الدراسي.");
+  if (!name || !className || !studentSection) {
+    notify("اكتب اسم الطالب واختر الصف واكتب الفصل.");
     return;
   }
   localStorage.setItem("basketballStudentId", id);
