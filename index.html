@@ -28,17 +28,38 @@
         <img src="images/login-robot.PNG" alt="الروبوت الرياضي" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
         <div class="image-placeholder robot-placeholder">ضع صورة الروبوت هنا<br><small>images/login-robot.PNG</small></div>
       </div>
-      <form id="loginForm" class="login-form">
-        <div class="login-label">LOGIN</div>
-        <h1>تسجيل الدخول</h1>
-        <p class="english-subtitle">Login with your ID</p>
-        <label for="studentId" class="sr-only">الرقم القومي</label>
-        <input id="studentId" inputmode="numeric" maxlength="14" placeholder="أدخل الرقم القومي الخاص بالطالب" required>
-        <button class="btn btn-cream" type="submit">تسجيل</button>
-        <p class="hint">للتجربة الأولية، أدخل أي رقم مكوّن من 6 أرقام على الأقل.</p>
-      </form>
-    </section>
+<form id="loginForm" class="login-form">
+  <div class="login-label">LOGIN</div>
+  <h1>تسجيل الدخول</h1>
+  <p class="english-subtitle">Login with your ID</p>
+  <label for="studentNameInput" class="sr-only">اسم الطالب</label>
+  <input
+    id="studentNameInput"
+    type="text"
+    placeholder="اكتب اسم الطالب رباعي"
+    required
+  >
+  <label for="studentId" class="sr-only">الرقم القومي</label>
+  <input
+    id="studentId"
+    type="text"
+    inputmode="numeric"
+    maxlength="14"
+    placeholder="أدخل الرقم القومي الخاص بالطالب"
+    required
+  >
+  <label for="classNameInput" class="sr-only">الفصل الدراسي</label>
+  <select id="classNameInput" required>
+    <option value="">اختر الفصل الدراسي</option>
+    <option value="الأول الإعدادي">الصف الأول الإعدادي</option>
+    <option value="الثاني الإعدادي">الصف الثاني الإعدادي</option>
+    <option value="الثالث الإعدادي">الصف الثالث الإعدادي</option>
+  </select>
 
+  <button class="btn btn-cream" type="submit">تسجيل</button>
+  <p class="hint">أدخل اسم الطالب والرقم القومي واختر الصف الدراسي.</p>
+</form>
+    </section>
     <!-- الصفحة الافتتاحية -->
     <section id="welcomePage" class="welcome-page page">
       <header class="welcome-top">
