@@ -77,3 +77,16 @@ window.loginWithFirebase = async function(studentId, password) {
     student: snapshot.data()
   };
 };
+
+window.checkQuizAttempt = async function() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("NOT_LOGGED_IN");
+  }
+
+  const attemptRef = doc(db, "quizAttempts", user.uid);
+  const snapshot = await getDoc(attemptRef);
+
+  return snapshot.exists();
+};
