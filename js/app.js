@@ -38,6 +38,21 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
       return;
     }
 
+await fetch(GOOGLE_SHEET_URL, {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "text/plain;charset=utf-8"
+  },
+  body: JSON.stringify({
+    action: "register",
+    name: name,
+    studentId: id,
+    className: className,
+    studentSection: studentSection,
+    password: password
+  })
+});
     localStorage.setItem("basketballStudentId", id);
     localStorage.setItem("basketballStudentName", name);
     localStorage.setItem("basketballClassName", className);
