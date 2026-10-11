@@ -3,8 +3,25 @@ const toast=document.getElementById("toast");let toastTimer;
 function notify(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2600)}
 function showPage(id){pages.forEach(page=>page.classList.toggle("active",page.id===id));window.scrollTo({top:0,behavior:"smooth"})}
 setTimeout(()=>{if(document.getElementById("splashPage").classList.contains("active"))showPage("loginPage")},1800);
-document.getElementById("loginForm").addEventListener("submit",event=>{event.preventDefault();const id=document.getElementById("studentId").value.trim();if(id.length<6){notify("اكتب رقمًا تجريبيًا من 6 أرقام على الأقل.");return}localStorage.setItem("basketballStudentId",id);document.getElementById("studentName").textContent="الطالب "+id.slice(-4);showPage("welcomePage")});
-document.getElementById("startBtn").addEventListener("click",()=>showPage("dashboardPage"));
+document.getElementById("loginForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const id = document.getElementById("studentId").value.trim();
+  const name = document.getElementById("studentNameInput").value.trim();
+  const className = document.getElementById("classNameInput").value;
+  if (id.length < 6) {
+    notify("اكتب رقمًا تجريبيًا من 6 أرقام على الأقل.");
+    return;
+  }
+  if (!name || !className) {
+    notify("اكتب اسم الطالب واختر الصف الدراسي.");
+    return;
+  }
+  localStorage.setItem("basketballStudentId", id);
+  localStorage.setItem("basketballStudentName", name);
+  localStorage.setItem("basketballClassName", className);
+  document.getElementById("studentName").textContent = name;
+  showPage("welcomePage");});
+document.getElementById("startBtn").addEventListener("click", () => showPage("dashboardPage"));
 document.querySelectorAll("[data-action]").forEach(button=>button.addEventListener("click",()=>{const a=button.dataset.action;if(a==="lessons")showPage("lessonsPage");else if(a==="open-review")showPage("reviewPage");else if(a==="open-chat")showPage("chatPage");else if(a==="dashboard")showPage("dashboardPage");else if(a==="saved")notify("المهارات المحفوظة هتظهر هنا لاحقًا.");else if(a==="settings")notify("الإعدادات التجريبية.");else if(a==="add")notify("تقدر تضيف دروس جديدة من ملفات المشروع.")}));
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
 document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("reviewPage"));
