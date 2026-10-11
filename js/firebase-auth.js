@@ -90,3 +90,19 @@ window.checkQuizAttempt = async function() {
 
   return snapshot.exists();
 };
+
+window.saveQuizAttempt = async function(score, total) {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("NOT_LOGGED_IN");
+  }
+
+  const attemptRef = doc(db, "quizAttempts", user.uid);
+
+  await setDoc(attemptRef, {
+    completed: true,
+    score: score,
+    total: total
+  });
+};
