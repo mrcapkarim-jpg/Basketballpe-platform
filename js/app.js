@@ -21,6 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", event => {
   localStorage.setItem("basketballStudentName", name);
   localStorage.setItem("basketballClassName", className);
   document.getElementById("studentName").textContent = name;
+  localStorage.setItem("basketballStudentSection", studentSection);
   document.getElementById("studentClass").textContent = "الصف " + className;
   showPage("welcomePage");});
 document.getElementById("startBtn").addEventListener("click", () => showPage("dashboardPage"));
