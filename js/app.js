@@ -83,6 +83,7 @@ function sendResultToSheet(score, total) {
       name: studentName,
       studentId: studentId,
       className: className,
+      studentSection: studentSection,
       score: score,
       total: total
     })
