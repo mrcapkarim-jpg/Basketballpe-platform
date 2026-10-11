@@ -112,9 +112,127 @@
   cursor: pointer;
 }
 
-/* إخفاء النموذج بالكامل عند عدم استخدامه */
-#existingLoginBox:not([hidden]) {
-  display: block;
+
+/* صندوق تسجيل الدخول للحساب السابق */
+#existingLoginBox {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 440px);
   margin: 16px auto;
-  max-width: 360px;
+  padding: 28px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #20529a, #123b78);
+  box-shadow: 0 18px 45px #061d4345;
+  color: #fff;
+  text-align: center;
+  animation: loginBoxAppear 0.3s ease both;
+}
+
+#existingLoginBox[hidden] {
+  display: none !important;
+}
+
+#existingLoginBox h3 {
+  margin: 0 0 8px;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+#existingLoginBox::before {
+  content: "🏀";
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #ffffff16;
+  border: 1px solid #ffffff30;
+  font-size: 34px;
+}
+
+#existingLoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  text-align: right;
+}
+
+#existingLoginForm label {
+  font-size: 14px;
+  font-weight: 800;
+  color: #e4edf8;
+}
+
+#existingLoginForm input {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  background: #8bd0e8;
+  color: #173b63;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+}
+
+#existingLoginForm input::placeholder {
+  color: #446b7e;
+}
+
+#existingLoginForm input:focus {
+  border-color: #f4df2b;
+  box-shadow: 0 0 0 3px #f4df2b25;
+}
+
+#existingLoginForm .btn,
+#backToRegister {
+  width: 100%;
+  min-height: 48px;
+  margin: 10px 0 0;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+#existingLoginForm .btn {
+  background: #f6efd7;
+  color: #17478f;
+}
+
+#backToRegister {
+  border: 1px solid #ffffff65;
+  background: transparent;
+  color: #fff;
+}
+
+#backToRegister:hover {
+  background: #ffffff12;
+}
+
+@keyframes loginBoxAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 560px) {
+  #existingLoginBox {
+    width: 100%;
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  #existingLoginBox h3 {
+    font-size: 22px;
+  }
 }
