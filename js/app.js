@@ -8,6 +8,7 @@ document.getElementById("loginForm").addEventListener("submit", event => {
   const id = document.getElementById("studentId").value.trim();
   const name = document.getElementById("studentNameInput").value.trim();
   const className = document.getElementById("classNameInput").value;
+  const studentSection = document.getElementById("studentSectionInput").value.trim();
   if (id.length < 6) {
     notify("اكتب رقمًا تجريبيًا من 6 أرقام على الأقل.");
     return;
