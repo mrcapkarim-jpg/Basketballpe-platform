@@ -24,7 +24,10 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
     notify("اكتب اسم الطالب واختر الصف واكتب الفصل.");
     return;
   }
-
+  if (password.length < 8) {
+  notify("كلمة المرور لازم تكون 8 أحرف أو أرقام على الأقل.");
+  return;
+  }
   try {
     notify("جاري التحقق من التسجيل السابق...");
 
