@@ -123,7 +123,7 @@ function checkStudentDuplicate(studentId) {
       delete window[callbackName];
       script.remove();
       reject(new Error("تعذر الاتصال بالشيت"));
-    }, 20000);
+    }, 7000);
 
     window[callbackName] = result => {
       clearTimeout(timeout);
