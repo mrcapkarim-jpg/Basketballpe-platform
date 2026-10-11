@@ -66,6 +66,34 @@
 
   <button class="btn btn-cream" type="submit">تسجيل</button>
 <button class="btn btn-outline" type="button" id="showExistingLogin">
+  
+<div id="existingLoginBox" hidden>
+  <h3>تسجيل الدخول 🏀</h3>
+
+  <form id="existingLoginForm">
+    <label for="existingStudentId">الرقم القومي</label>
+    <input
+      type="text"
+      id="existingStudentId"
+      maxlength="14"
+      inputmode="numeric"
+      placeholder="أدخل الرقم القومي"
+      required
+    />
+
+    <label for="existingStudentPassword">كلمة المرور</label>
+    <input
+      type="password"
+      id="existingStudentPassword"
+      placeholder="أدخل كلمة المرور"
+      required
+    />
+
+    <button class="btn btn-cream" type="submit">
+      دخول
+    </button>
+  </form>
+</div>
   أملك حسابًا من قبل
 </button>
   <p class="hint">أدخل اسم الطالب والرقم القومي واختر الصف الدراسي.</p>
