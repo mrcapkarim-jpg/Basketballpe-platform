@@ -89,3 +89,38 @@ function sendResultToSheet(score, total) {
     })
   }).catch(error => console.error("Sheet error:", error));
 }
+function checkStudentDuplicate(studentId) {
+  return new Promise((resolve, reject) => {
+    const callbackName =
+      "studentCheck_" + Date.now();
+
+    const script = document.createElement("script");
+
+    const timeout = setTimeout(() => {
+      delete window[callbackName];
+      script.remove();
+      reject(new Error("تعذر الاتصال بالشيت"));
+    }, 10000);
+
+    window[callbackName] = result => {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
+      resolve(result.duplicate);
+    };
+
+    script.src =
+      GOOGLE_SHEET_URL +
+      "?studentId=" + encodeURIComponent(studentId) +
+      "&callback=" + callbackName;
+
+    script.onerror = () => {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
+      reject(new Error("فشل الاتصال بالشيت"));
+    };
+
+    document.body.appendChild(script);
+  });
+}
