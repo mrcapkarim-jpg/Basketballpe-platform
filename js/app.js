@@ -114,6 +114,7 @@ function sendResultToSheet(score, total) {
 }
 
 
+
 function checkStudentDuplicate(studentId, attempt = 1) {
   return new Promise((resolve, reject) => {
     const callbackName =
@@ -138,19 +139,19 @@ function checkStudentDuplicate(studentId, attempt = 1) {
           checkStudentDuplicate(studentId, attempt + 1)
             .then(resolve)
             .catch(reject);
-        }, 1500);
+        }, 1000);
       } else {
         reject(error);
       }
     };
 
     const timeout = setTimeout(() => {
-      retryOrReject(new Error("تعذر الاتصال بالشيت بعد 3 محاولات"));
-    }, 15000);
+      retryOrReject(new Error("انتهت مهلة التحقق"));
+    }, 8000);
 
     window[callbackName] = result => {
       if (!result || typeof result.duplicate !== "boolean") {
-        retryOrReject(new Error("استجابة غير صحيحة من الشيت"));
+        retryOrReject(new Error("استجابة غير صحيحة"));
         return;
       }
 
@@ -159,7 +160,7 @@ function checkStudentDuplicate(studentId, attempt = 1) {
     };
 
     script.onerror = () => {
-      retryOrReject(new Error("فشل تحميل نتيجة الفحص"));
+      retryOrReject(new Error("فشل الاتصال بالشيت"));
     };
 
     const separator = GOOGLE_SHEET_URL.includes("?") ? "&" : "?";
