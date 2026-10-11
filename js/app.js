@@ -116,25 +116,9 @@ await window.registerWithFirebase(
   }
 });
 
-document.getElementById("startBtn").addEventListener("click", async () => {
-  try {
-    if (typeof window.checkQuizAttempt !== "function") {
-      notify("تعذر التحقق من حالة الاختبار. حدّث الصفحة وحاول مرة أخرى.");
-      return;
-    }
 
-    const completed = await window.checkQuizAttempt();
-
-    if (completed) {
-      notify("أنت أكملت المراجعة بالفعل، ولا يمكن تكرارها.");
-      return;
-    }
-
-    showPage("dashboardPage");
-  } catch (error) {
-    console.error("Check quiz attempt error:", error);
-    notify("تعذر التحقق من حالة الاختبار. تأكد من الاتصال بالإنترنت.");
-  }
+document.getElementById("startBtn").addEventListener("click", () => {
+  showPage("dashboardPage");
 });
 
 document.querySelectorAll("[data-action]").forEach(button =>
