@@ -67,6 +67,8 @@ const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyekurr85LXIAk
 
 function sendResultToSheet(score, total) {
   const studentId = localStorage.getItem("basketballStudentId") || "";
+  const studentName = localStorage.getItem("basketballStudentName") || "";
+  const className = localStorage.getItem("basketballClassName") || "";
 
   fetch(GOOGLE_SHEET_URL, {
     method: "POST",
