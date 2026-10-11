@@ -113,31 +113,53 @@ function sendResultToSheet(score, total) {
   }).catch(error => console.error("Sheet error:", error));
 }
 
-function checkStudentDuplicate(studentId) {
+
+function checkStudentDuplicate(studentId, attempt = 1) {
   return new Promise((resolve, reject) => {
-    const callbackName = "studentCheck_" + Date.now();
+    const callbackName =
+      "studentCheck_" + Date.now() + "_" + attempt;
+
     const script = document.createElement("script");
+    let finished = false;
 
     const cleanup = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timeout);
       delete window[callbackName];
       script.remove();
     };
 
-    const timeout = setTimeout(() => {
+    const retryOrReject = error => {
       cleanup();
-      reject(new Error("تعذر الاتصال بالشيت"));
-    }, 11000);
+
+      if (attempt < 3) {
+        setTimeout(() => {
+          checkStudentDuplicate(studentId, attempt + 1)
+            .then(resolve)
+            .catch(reject);
+        }, 1500);
+      } else {
+        reject(error);
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      retryOrReject(new Error("تعذر الاتصال بالشيت بعد 3 محاولات"));
+    }, 15000);
 
     window[callbackName] = result => {
-      clearTimeout(timeout);
+      if (!result || typeof result.duplicate !== "boolean") {
+        retryOrReject(new Error("استجابة غير صحيحة من الشيت"));
+        return;
+      }
+
       cleanup();
       resolve(result.duplicate);
     };
 
     script.onerror = () => {
-      clearTimeout(timeout);
-      cleanup();
-      reject(new Error("فشل تحميل نتيجة الفحص"));
+      retryOrReject(new Error("فشل تحميل نتيجة الفحص"));
     };
 
     const separator = GOOGLE_SHEET_URL.includes("?") ? "&" : "?";
@@ -146,7 +168,8 @@ function checkStudentDuplicate(studentId) {
       GOOGLE_SHEET_URL +
       separator +
       "studentId=" + encodeURIComponent(studentId) +
-      "&callback=" + encodeURIComponent(callbackName);
+      "&callback=" + encodeURIComponent(callbackName) +
+      "&t=" + Date.now();
 
     document.body.appendChild(script);
   });
