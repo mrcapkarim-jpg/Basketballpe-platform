@@ -37,7 +37,12 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
       notify("الرقم ده مسجّل قبل كده! استخدم بيانات التسجيل السابقة.");
       return;
     }
+if (typeof window.registerWithFirebase !== "function") {
+  notify("نظام تسجيل الحسابات لم يتم تحميله. حدّث الصفحة وحاول مرة أخرى.");
+  return;
+}
 
+await window.registerWithFirebase(id, password);
 await fetch(GOOGLE_SHEET_URL, {
   method: "POST",
   mode: "no-cors",
