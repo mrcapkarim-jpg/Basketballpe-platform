@@ -28,10 +28,12 @@
         <img src="images/login-robot.PNG" alt="الروبوت الرياضي" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
         <div class="image-placeholder robot-placeholder">ضع صورة الروبوت هنا<br><small>images/login-robot.PNG</small></div>
       </div>
+
 <form id="loginForm" class="login-form">
   <div class="login-label">LOGIN</div>
   <h1>تسجيل الدخول</h1>
   <p class="english-subtitle">Login with your ID</p>
+
   <label for="studentNameInput" class="sr-only">اسم الطالب</label>
   <input
     id="studentNameInput"
@@ -39,6 +41,7 @@
     placeholder="اكتب اسم الطالب رباعي"
     required
   >
+
   <label for="studentId" class="sr-only">الرقم القومي</label>
   <input
     id="studentId"
@@ -48,6 +51,7 @@
     placeholder="أدخل الرقم القومي الخاص بالطالب"
     required
   >
+
   <label for="classNameInput" class="sr-only">الفصل الدراسي</label>
   <select id="classNameInput" required>
     <option value="">اختر الفصل الدراسي</option>
@@ -65,8 +69,18 @@
   >
 
   <button class="btn btn-cream" type="submit">تسجيل</button>
-<button class="btn btn-outline" type="button" id="showExistingLogin">
-  
+
+  <button
+    class="btn btn-outline"
+    type="button"
+    id="showExistingLogin"
+  >
+    أملك حسابًا من قبل
+  </button>
+
+  <p class="hint">أدخل اسم الطالب والرقم القومي واختر الصف الدراسي.</p>
+</form>
+
 <div id="existingLoginBox" hidden>
   <h3>تسجيل الدخول 🏀</h3>
 
@@ -79,7 +93,7 @@
       inputmode="numeric"
       placeholder="أدخل الرقم القومي"
       required
-    />
+    >
 
     <label for="existingStudentPassword">كلمة المرور</label>
     <input
@@ -87,18 +101,20 @@
       id="existingStudentPassword"
       placeholder="أدخل كلمة المرور"
       required
-    />
+    >
 
-    <button class="btn btn-cream" type="submit">
-      دخول
-    </button>
+    <button class="btn btn-cream" type="submit">دخول</button>
   </form>
+
+  <button
+    class="btn btn-outline"
+    type="button"
+    id="backToRegister"
+  >
+    العودة إلى التسجيل
+  </button>
 </div>
-  أملك حسابًا من قبل
-</button>
-  <p class="hint">أدخل اسم الطالب والرقم القومي واختر الصف الدراسي.</p>
-</form>
-    </section>
+</section>
     <!-- الصفحة الافتتاحية -->
     <section id="welcomePage" class="welcome-page page">
       <header class="welcome-top">
