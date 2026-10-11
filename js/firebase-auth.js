@@ -1,11 +1,18 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile
+  signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB8I35Hxg2soHhUQMoAbCfbP7BNs05Fwq0",
@@ -19,14 +26,54 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-window.registerWithFirebase = async function(studentId, password) {
+// إنشاء حساب الطالب وحفظ بياناته
+window.registerWithFirebase = async function(
+  studentId,
+  password,
+  name,
+  className,
+  studentSection
+) {
   const email = `${studentId}@karimbasketball.com`;
-  return createUserWithEmailAndPassword(auth, email, password);
+
+  const credential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  await setDoc(doc(db, "students", credential.user.uid), {
+    studentId,
+    name,
+    className,
+    studentSection
+  });
+
+  return credential;
 };
 
+// تسجيل الدخول واسترجاع بيانات الطالب
 window.loginWithFirebase = async function(studentId, password) {
   const email = `${studentId}@karimbasketball.com`;
-  return signInWithEmailAndPassword(auth, email, password);
-};
 
+  const credential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  const snapshot = await getDoc(
+    doc(db, "students", credential.user.uid)
+  );
+
+  if (!snapshot.exists()) {
+    throw new Error("STUDENT_PROFILE_NOT_FOUND");
+  }
+
+  return {
+    user: credential.user,
+    student: snapshot.data()
+  };
+};
