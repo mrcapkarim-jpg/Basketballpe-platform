@@ -3,7 +3,10 @@ const toast=document.getElementById("toast");let toastTimer;
 function notify(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2600)}
 function showPage(id){pages.forEach(page=>page.classList.toggle("active",page.id===id));window.scrollTo({top:0,behavior:"smooth"})}
 setTimeout(()=>{if(document.getElementById("splashPage").classList.contains("active"))showPage("loginPage")},1800);
-
+document.getElementById("showExistingLogin").addEventListener("click", () => {
+  const box = document.getElementById("existingLoginBox");
+  box.hidden = !box.hidden;
+});
 document.getElementById("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
 
