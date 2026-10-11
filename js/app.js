@@ -27,6 +27,19 @@ document.getElementById("existingLoginForm").addEventListener("submit", async ev
 
     await window.loginWithFirebase(id, password);
 
+const name = localStorage.getItem("basketballStudentName");
+const className = localStorage.getItem("basketballClassName");
+
+if (!name || !className) {
+  notify("تم تسجيل الدخول، لكن بيانات الطالب غير متاحة على هذا الجهاز.");
+  return;
+}
+
+document.getElementById("studentName").textContent = name;
+document.getElementById("studentClass").textContent = "الصف " + className;
+
+showPage("welcomePage");
+
     notify("تم التحقق من الحساب بنجاح.");
   } catch (error) {
     console.error("Login error:", error);
