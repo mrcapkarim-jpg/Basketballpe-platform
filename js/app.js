@@ -7,6 +7,32 @@ document.getElementById("showExistingLogin").addEventListener("click", () => {
   const box = document.getElementById("existingLoginBox");
   box.hidden = !box.hidden;
 });
+
+document.getElementById("existingLoginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const id = document.getElementById("existingStudentId").value.trim();
+  const password = document.getElementById("existingStudentPassword").value;
+
+  if (!id || !password) {
+    notify("اكتب الرقم القومي وكلمة المرور.");
+    return;
+  }
+
+  try {
+    if (typeof window.loginWithFirebase !== "function") {
+      notify("نظام تسجيل الدخول لم يتم تحميله.");
+      return;
+    }
+
+    await window.loginWithFirebase(id, password);
+
+    notify("تم التحقق من الحساب بنجاح.");
+  } catch (error) {
+    console.error("Login error:", error);
+    notify("الرقم القومي أو كلمة المرور غير صحيحة.");
+  }
+});
 document.getElementById("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
 
