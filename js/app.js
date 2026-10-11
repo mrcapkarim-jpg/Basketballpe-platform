@@ -20,6 +20,7 @@ document.getElementById("loginForm").addEventListener("submit", event => {
   localStorage.setItem("basketballStudentName", name);
   localStorage.setItem("basketballClassName", className);
   document.getElementById("studentName").textContent = name;
+  document.getElementById("studentClass").textContent = "الصف " + className;
   showPage("welcomePage");});
 document.getElementById("startBtn").addEventListener("click", () => showPage("dashboardPage"));
 document.querySelectorAll("[data-action]").forEach(button=>button.addEventListener("click",()=>{const a=button.dataset.action;if(a==="lessons")showPage("lessonsPage");else if(a==="open-review")showPage("reviewPage");else if(a==="open-chat")showPage("chatPage");else if(a==="dashboard")showPage("dashboardPage");else if(a==="saved")notify("المهارات المحفوظة هتظهر هنا لاحقًا.");else if(a==="settings")notify("الإعدادات التجريبية.");else if(a==="add")notify("تقدر تضيف دروس جديدة من ملفات المشروع.")}));
