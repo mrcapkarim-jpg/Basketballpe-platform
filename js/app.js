@@ -81,8 +81,13 @@ if (typeof window.registerWithFirebase !== "function") {
   return;
 }
 
-await window.registerWithFirebase(id, password);
-await fetch(GOOGLE_SHEET_URL, {
+await window.registerWithFirebase(
+  id,
+  password,
+  name,
+  className,
+  studentSection
+);await fetch(GOOGLE_SHEET_URL, {
   method: "POST",
   mode: "no-cors",
   headers: {
