@@ -476,3 +476,86 @@
     height: 110px;
   }
 }
+
+/* ضبط تناسق الاختيارات النصية */
+#reviewPage .answer-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+#reviewPage .answer-options button {
+  flex: 0 1 calc(50% - 14px);
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* تنسيق صور إجابات السؤال الخامس */
+#reviewPage .image-answer-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 14px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+#reviewPage .image-answer-options .image-answer {
+  flex: 0 1 155px;
+  min-width: 0;
+  padding: 8px;
+  border: 2px solid #d5e0e8;
+  border-radius: 12px;
+  background: #f1f5f7;
+  color: #21344a;
+  box-sizing: border-box;
+}
+
+#reviewPage .image-answer-options .image-answer img {
+  display: block;
+  width: 100%;
+  height: 115px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+}
+
+#reviewPage .image-answer-options .image-answer span {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#reviewPage .image-answer-options .image-answer.correct {
+  background: #d8f4e3;
+  border-color: #41a66a;
+}
+
+#reviewPage .image-answer-options .image-answer.wrong {
+  background: #fde2df;
+  border-color: #d35b52;
+}
+
+#reviewPage .image-answer-options .image-answer:hover {
+  border-color: #f2a31b;
+}
+
+/* تنسيق الموبايل */
+@media (max-width: 600px) {
+  #reviewPage .answer-options button {
+    flex-basis: 100%;
+  }
+
+  #reviewPage .image-answer-options .image-answer {
+    flex-basis: calc(50% - 14px);
+  }
+
+  #reviewPage .image-answer-options .image-answer img {
+    height: 105px;
+  }
+}
