@@ -572,3 +572,112 @@
   position: relative;
   padding-left: 8px;
 }
+
+/* شاشة ختام مراجعة المهارات */
+#reviewCompletion {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 32px 24px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #ffffff, #edf5ff);
+  border: 1px solid #d6e7ff;
+  box-shadow:
+    0 12px 35px rgba(23, 71, 143, 0.10),
+    0 0 22px rgba(22, 139, 255, 0.08);
+}
+
+#reviewCompletion:not([hidden]) {
+  animation: reviewCompletionEnter 650ms cubic-bezier(.2, .75, .25, 1) both;
+}
+
+#reviewCompletion .completion-ball {
+  font-size: 58px;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 0 12px rgba(244, 165, 28, .35));
+  animation: reviewBallEnter 700ms ease-out both;
+}
+
+#reviewCompletion .completion-stars {
+  color: #f4a51c;
+  text-shadow: 0 0 12px rgba(244, 165, 28, .45);
+  margin-bottom: 10px;
+}
+
+#reviewCompletion h2 {
+  color: #17478f;
+  text-shadow: 0 0 16px rgba(22, 139, 255, .15);
+}
+
+#reviewCompletion .completion-score {
+  max-width: 280px;
+  margin: 22px auto;
+  padding: 16px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(244, 165, 28, .45);
+  box-shadow: 0 0 22px rgba(244, 165, 28, .12);
+}
+
+#reviewCompletion .completion-score strong {
+  display: block;
+  margin-top: 8px;
+  color: #17478f;
+  font-size: 30px;
+  text-shadow: 0 0 14px rgba(22, 139, 255, .18);
+}
+
+#reviewCompletion .completion-message,
+#reviewCompletion .completion-thanks {
+  line-height: 1.9;
+}
+
+#reviewCompletion #backToDashboardAfterReview {
+  margin-top: 14px;
+  box-shadow: 0 5px 18px rgba(244, 165, 28, .25);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+#reviewCompletion #backToDashboardAfterReview:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 7px 22px rgba(244, 165, 28, .32),
+    0 0 16px rgba(22, 139, 255, .14);
+}
+
+@keyframes reviewCompletionEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(.985);
+    box-shadow: 0 0 0 rgba(22, 139, 255, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow:
+      0 12px 35px rgba(23, 71, 143, .10),
+      0 0 22px rgba(22, 139, 255, .08);
+  }
+}
+
+@keyframes reviewBallEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) rotate(-18deg) scale(.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #reviewCompletion:not([hidden]),
+  #reviewCompletion .completion-ball {
+    animation: none;
+  }
+
+  #reviewCompletion #backToDashboardAfterReview {
+    transition: none;
+  }
+}
