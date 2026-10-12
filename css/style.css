@@ -643,36 +643,34 @@
   padding-left: 50px;
 }
 
-/* إصلاح موضع دوائر النسب وصور كروت لوحة التحكم */
-.dashboard-cards .skills-card .feature-text,
-.dashboard-cards .review-card .feature-text {
+/* ترتيب أيقونة الكارت ودائرة النسبة في صف واحد */
+.dashboard-cards .feature-text {
   position: relative;
 }
 
-.dashboard-cards .skills-card .feature-text .progress-percent,
-.dashboard-cards .review-card .feature-text .progress-percent {
-  top: 0;
-  left: 0;
-  z-index: 3;
+.dashboard-cards .feature-text .round-icon {
+  display: inline-flex;
+  vertical-align: middle;
 }
 
-.dashboard-cards .skills-card .feature-text .round-icon,
-.dashboard-cards .review-card .feature-text .round-icon {
-  position: relative;
-  z-index: 1;
+.dashboard-cards .feature-text .progress-percent {
+  position: static;
+  display: inline-flex;
+  vertical-align: middle;
+  width: 44px;
+  height: 44px;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
-.dashboard-cards .skills-card .feature-image,
-.dashboard-cards .review-card .feature-image {
-  margin-top: 0;
-  padding-top: 0;
-  overflow: hidden;
+/* إلغاء الإزاحة التي أضيفت للعناوين */
+.dashboard-cards .feature-text h2 {
+  padding-left: 0;
 }
 
-.dashboard-cards .skills-card .feature-image img,
-.dashboard-cards .review-card .feature-image img {
-  display: block;
+/* استعادة طريقة عرض الصور الأصلية */
+.dashboard-cards .feature-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
