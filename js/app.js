@@ -121,51 +121,69 @@ document.getElementById("startBtn").addEventListener("click", () => {
   showPage("dashboardPage");
 });
 
+
 document.querySelectorAll("[data-action]").forEach(button =>
   button.addEventListener("click", async () => {
     const a = button.dataset.action;
 
     if (a === "lessons") {
       showPage("lessonsPage");
-    
-else if (a === "open-review") {
-  showPage("reviewPage");
 
-  try {
-    if (typeof window.checkQuizAttempt !== "function") {
-      notify("تعذر التحقق من حالة الاختبار. حاول مرة أخرى.");
-      return;
+    } else if (a === "open-review") {
+      showPage("reviewPage");
+
+      try {
+        if (typeof window.checkQuizAttempt !== "function") {
+          notify("تعذر التحقق من حالة الاختبار. حاول مرة أخرى.");
+          return;
+        }
+
+        const completed = await window.checkQuizAttempt();
+
+        const question = document.getElementById("reviewQuestion");
+        const options = document.getElementById("reviewOptions");
+        const imageOptions = document.getElementById("imageAnswerOptions");
+        const next = document.getElementById("nextQuestion");
+        const feedback = document.getElementById("reviewFeedback");
+
+        if (completed) {
+          question.hidden = true;
+          options.hidden = true;
+          imageOptions.hidden = true;
+          next.hidden = true;
+
+          feedback.textContent =
+            "أنت أكملت مراجعة مهارة التنطيط بالفعل، ولا يمكن تكرار الاختبار. يمكنك مراجعة الصور والخطوات التعليمية بالأعلى.";
+        } else {
+          question.hidden = false;
+          options.hidden = false;
+          imageOptions.hidden = false;
+          next.hidden = false;
+          feedback.textContent = "";
+          renderQuestion();
+        }
+      } catch (error) {
+        console.error("Check quiz attempt error:", error);
+        notify("تعذر التحقق من حالة الاختبار. تأكد من الاتصال بالإنترنت.");
+      }
+
+    } else if (a === "open-chat") {
+      showPage("chatPage");
+
+    } else if (a === "dashboard") {
+      showPage("dashboardPage");
+
+    } else if (a === "saved") {
+      notify("المهارات المحفوظة هتظهر هنا لاحقًا.");
+
+    } else if (a === "settings") {
+      notify("الإعدادات التجريبية.");
+
+    } else if (a === "add") {
+      notify("تقدر تضيف دروس جديدة من ملفات المشروع.");
     }
-
-    const completed = await window.checkQuizAttempt();
-
-    const question = document.getElementById("reviewQuestion");
-    const options = document.getElementById("reviewOptions");
-    const imageOptions = document.getElementById("imageAnswerOptions");
-    const next = document.getElementById("nextQuestion");
-    const feedback = document.getElementById("reviewFeedback");
-
-    if (completed) {
-      question.hidden = true;
-      options.hidden = true;
-      imageOptions.hidden = true;
-      next.hidden = true;
-
-      feedback.textContent =
-        "أنت أكملت مراجعة مهارة التنطيط بالفعل، ولا يمكن تكرار الاختبار. يمكنك مراجعة الصور والخطوات التعليمية بالأعلى.";
-    } else {
-      question.hidden = false;
-      options.hidden = false;
-      imageOptions.hidden = false;
-      next.hidden = false;
-      feedback.textContent = "";
-      renderQuestion();
-    }
-  } catch (error) {
-    console.error("Check quiz attempt error:", error);
-    notify("تعذر التحقق من حالة الاختبار. تأكد من الاتصال بالإنترنت.");
-  }
-}
+  })
+);
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
 document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("reviewPage"));
 const questions=[
