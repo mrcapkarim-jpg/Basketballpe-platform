@@ -69,6 +69,13 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
   const className = document.getElementById("classNameInput").value;
   const studentSection = document.getElementById("studentSectionInput").value.trim();
   const password = document.getElementById("studentPasswordInput").value;
+  const confirmPassword = document.getElementById("confirmStudentPassword").value;
+
+if (password !== confirmPassword) {
+  notify("كلمتا المرور غير متطابقتين. تأكد من كتابتهما بشكل صحيح.");
+  document.getElementById("confirmStudentPassword").focus();
+  return;
+}
   if (id.length < 6) {
     notify("اكتب رقمًا تجريبيًا من 6 أرقام على الأقل.");
     return;
