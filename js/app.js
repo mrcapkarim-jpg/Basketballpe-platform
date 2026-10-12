@@ -13,7 +13,7 @@ async function showWelcomeWithRobotTransition() {
 
   loginPage.classList.add("robot-transition-out");
 
-  await new Promise(resolve => setTimeout(resolve, 700));
+  await new Promise(resolve => setTimeout(resolve, 1300));
 
   showPage("welcomePage");
   loginPage.classList.remove("robot-transition-out");
