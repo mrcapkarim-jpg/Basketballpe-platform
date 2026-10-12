@@ -186,12 +186,17 @@ function renderQuestion(){
  if(q.images)q.images.forEach((item,i)=>imageOptions.appendChild(makeAnswer(item[1],i,true,item[0])));else q.options.forEach((item,i)=>textOptions.appendChild(makeAnswer(item,i)));
  answered=false;
 }
-function updateProgress(){const percent=Math.round(correctSet.size/questions.length*100);document.getElementById("progressBar").style.width=percent+"%";document.getElementById("progressText").textContent=`جاوبت صح على ${correctSet.size} من ${questions.length} أسئلة (${percent}٪).`}
-document.getElementById("nextQuestion").addEventListener("click", async () => {
-  if (!answered) {
-    notify("اختار إجابة الأول يا بطل!");
-    return;
-  }
+javascript
+function updateProgress() {
+  const percent = Math.round((correctSet.size / questions.length) * 100);
+
+  document.getElementById("progressBar").style.width = percent + "%";
+
+  document.getElementById("progressText").textContent =
+    "جاوبت صح على " + correctSet.size +
+    " من " + questions.length +
+    " أسئلة (" + percent + "٪).";
+}
 
   if (qIndex < questions.length - 1) {
     qIndex++;
