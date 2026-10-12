@@ -681,3 +681,9 @@
     transition: none;
   }
 }
+#welcomePage .welcome-copy img.welcome-students-img {
+  width: 180%;
+  max-width: none;
+  max-height: 75vh;
+  object-fit: contain;
+}
