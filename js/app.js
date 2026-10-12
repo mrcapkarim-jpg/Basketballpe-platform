@@ -8,6 +8,17 @@ document.getElementById("showExistingLogin").addEventListener("click", () => {
   box.hidden = !box.hidden;
 });
 
+async function showWelcomeWithRobotTransition() {
+  const loginPage = document.getElementById("loginPage");
+
+  loginPage.classList.add("robot-transition-out");
+
+  await new Promise(resolve => setTimeout(resolve, 700));
+
+  showPage("welcomePage");
+  loginPage.classList.remove("robot-transition-out");
+}
+
 document.getElementById("existingLoginForm").addEventListener("submit", async event => {
   event.preventDefault();
 
@@ -36,8 +47,8 @@ localStorage.setItem("basketballStudentSection", student.studentSection);
 document.getElementById("studentName").textContent = student.name;
 document.getElementById("studentClass").textContent = "الصف " + student.className;
 
-showPage("welcomePage");
-
+await showWelcomeWithRobotTransition();
+    
     notify("تم التحقق من الحساب بنجاح.");
   } catch (error) {
     console.error("Login error:", error);
@@ -108,7 +119,7 @@ await window.registerWithFirebase(
     document.getElementById("studentName").textContent = name;
     document.getElementById("studentClass").textContent = "الصف " + className;
 
-    showPage("welcomePage");
+    await showWelcomeWithRobotTransition();
 
   } catch (error) {
     console.error("Duplicate check error:", error);
