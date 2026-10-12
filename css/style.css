@@ -334,3 +334,13 @@
     font-size: 22px;
   }
 }
+
+/* إصلاح التبديل بين التسجيل والدخول */
+#loginForm[hidden],
+#existingLoginBox[hidden] {
+  display: none !important;
+}
+
+#loginForm:not([hidden]) {
+  display: flex;
+}
