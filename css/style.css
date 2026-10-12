@@ -687,3 +687,52 @@
   max-height: 75vh;
   object-fit: contain;
 }
+
+/* تكبير صورة صفحة استكمال مهارة التنطيط فقط */
+#continueSkillPage .review-layout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 24px auto;
+}
+
+#continueSkillPage .review-question {
+  width: 100%;
+  max-width: 1100px;
+  padding: 24px;
+  border-radius: 26px;
+}
+
+#continueSkillPage .question-visual {
+  width: 100%;
+  height: min(65vh, 600px);
+  min-height: 350px;
+  margin: 0 auto 20px;
+  background: #f0f2f4;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#continueSkillPage .question-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#continueSkillPage .review-question h2 {
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+  #continueSkillPage .review-question {
+    padding: 14px;
+  }
+
+  #continueSkillPage .question-visual {
+    height: 50vh;
+    min-height: 280px;
+  }
+}
