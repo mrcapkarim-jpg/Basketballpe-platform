@@ -614,26 +614,6 @@
   }
 }
 
-/* ترتيب أيقونة الكارت ودائرة النسبة في صف واحد */
-.dashboard-cards .feature-text {
-  position: relative;
-}
-
-.dashboard-cards .feature-text .round-icon {
-  display: inline-flex;
-  vertical-align: middle;
-}
-
-.dashboard-cards .feature-text .progress-percent {
-  position: static;
-  display: inline-flex;
-  vertical-align: middle;
-  width: 44px;
-  height: 44px;
-  margin-right: 8px;
-  flex-shrink: 0;
-}
-
 /* إلغاء الإزاحة التي أضيفت للعناوين */
 .dashboard-cards .feature-text h2 {
   padding-left: 0;
