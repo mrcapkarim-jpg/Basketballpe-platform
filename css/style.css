@@ -349,3 +349,130 @@
 #loginForm:not([hidden]) {
   display: flex;
 }
+
+/* تحسين عرض وتصميم صفحة مراجعة المهارات */
+#reviewPage .review-layout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 28px auto;
+}
+
+#reviewPage .review-question {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(22px, 4vw, 40px);
+  border-radius: 28px;
+  box-sizing: border-box;
+}
+
+#reviewPage .question-visual {
+  max-width: 620px;
+  height: 220px;
+  margin: 0 auto 24px;
+  border-radius: 22px;
+}
+
+#reviewPage .review-question h2 {
+  max-width: 850px;
+  margin: 24px auto;
+  font-size: clamp(21px, 2.5vw, 28px);
+  line-height: 1.8;
+  color: #174078;
+}
+
+#reviewPage .answer-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+#reviewPage .answer-options button {
+  min-height: 58px;
+  padding: 15px 18px;
+  border-radius: 16px;
+  font-size: 17px;
+  transition: border-color .2s, background .2s;
+}
+
+#reviewPage .image-answer-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+#reviewPage .image-answer-options[hidden],
+#reviewPage .answer-options[hidden] {
+  display: none !important;
+}
+
+#reviewPage .image-answer {
+  min-width: 0;
+  padding: 10px;
+  border: 2px solid #dce5ec;
+  border-radius: 18px;
+  background: #f5f8fa;
+  cursor: pointer;
+}
+
+#reviewPage .image-answer img {
+  display: block;
+  width: 100%;
+  height: 125px;
+  object-fit: contain;
+}
+
+#reviewPage .image-answer span {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+#reviewPage .image-answer.correct {
+  background: #d8f4e3;
+  border-color: #41a66a;
+}
+
+#reviewPage .image-answer.wrong {
+  background: #fde2df;
+  border-color: #d35b52;
+}
+
+#reviewPage .feedback {
+  margin: 20px auto 12px;
+  line-height: 1.8;
+}
+
+#reviewPage #nextQuestion {
+  min-width: 190px;
+  padding: 13px 24px;
+  border-radius: 14px;
+}
+
+@media (max-width: 600px) {
+  #reviewPage .review-question {
+    padding: 18px 14px;
+  }
+
+  #reviewPage .question-visual {
+    height: 180px;
+  }
+
+  #reviewPage .answer-options {
+    grid-template-columns: 1fr;
+  }
+
+  #reviewPage .image-answer-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  #reviewPage .image-answer img {
+    height: 110px;
+  }
+}
