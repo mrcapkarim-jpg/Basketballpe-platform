@@ -642,3 +642,37 @@
 .dashboard-cards .feature-text h2 {
   padding-left: 50px;
 }
+
+/* إصلاح موضع دوائر النسب وصور كروت لوحة التحكم */
+.dashboard-cards .skills-card .feature-text,
+.dashboard-cards .review-card .feature-text {
+  position: relative;
+}
+
+.dashboard-cards .skills-card .feature-text .progress-percent,
+.dashboard-cards .review-card .feature-text .progress-percent {
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.dashboard-cards .skills-card .feature-text .round-icon,
+.dashboard-cards .review-card .feature-text .round-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-cards .skills-card .feature-image,
+.dashboard-cards .review-card .feature-image {
+  margin-top: 0;
+  padding-top: 0;
+  overflow: hidden;
+}
+
+.dashboard-cards .skills-card .feature-image img,
+.dashboard-cards .review-card .feature-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
