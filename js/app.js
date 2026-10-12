@@ -198,6 +198,12 @@ function updateProgress() {
     " أسئلة (" + percent + "٪).";
 }
 
+document.getElementById("nextQuestion").addEventListener("click", async () => {
+  if (!answered) {
+    notify("اختار إجابة الأول يا بطل!");
+    return;
+  }
+
   if (qIndex < questions.length - 1) {
     qIndex++;
     renderQuestion();
@@ -212,7 +218,9 @@ function updateProgress() {
 
     sendResultToSheet(score, total);
 
-    notify("خلصت المراجعة! إجاباتك الصح " + score + " من " + total + ".");
+    notify(
+      "خلصت المراجعة! إجاباتك الصح " + score + " من " + total + "."
+    );
 
     qIndex = 0;
     correctSet.clear();
@@ -229,7 +237,6 @@ function updateProgress() {
     }
   }
 });
-
 const answers=[
  {keys:["إيدي","ايدي","أطراف","صوابع","اصابع","أصابع"],text:"افرد صوابعك بشكل مريح وخليها تلامس الكورة، وادفعها لتحت برفق. بلاش تضربها براحة إيدك."},
  {keys:["أبص","ابص","بص","قدامي","الملعب","الأرض","الارض"],text:"حاول تبص لقدام عشان تشوف الملعب وأصحابك، ومش لازم تفضل باصص للكورة طول الوقت."},
