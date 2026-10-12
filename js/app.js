@@ -253,8 +253,7 @@ const video=document.getElementById("dribbleVideo"),videoPlaceholder=document.ge
 video.addEventListener("loadeddata",()=>videoPlaceholder.style.display="none");video.addEventListener("error",()=>videoPlaceholder.style.display="flex");
 renderQuestion();
 
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyekurr85LXIAkjHPxcX8B0CR-U6xCmnUfy1gT1avoRwSg_v7ZcEm7Pd5ddGdrpT7Y/exec";
-
+const GOOGLE_SHEET_URL = "https://misty-sea-ab60p-basketball-bridgee.mr-capkarim.workers.dev/";
 function sendResultToSheet(score, total) {
   const studentId = localStorage.getItem("basketballStudentId") || "";
   const studentName = localStorage.getItem("basketballStudentName") || "";
