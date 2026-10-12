@@ -267,15 +267,23 @@ function renderQuestion(){
  if(q.images)q.images.forEach((item,i)=>imageOptions.appendChild(makeAnswer(item[1],i,true,item[0])));else q.options.forEach((item,i)=>textOptions.appendChild(makeAnswer(item,i)));
  answered=false;
 }
+
 function updateProgress() {
   const percent = Math.round((correctSet.size / questions.length) * 100);
 
-  document.getElementById("progressBar").style.width = percent + "%";
+  const quizProgressBar = document.getElementById("quizProgressBar");
+  const quizProgressText = document.getElementById("quizProgressText");
 
-  document.getElementById("progressText").textContent =
-    "جاوبت صح على " + correctSet.size +
-    " من " + questions.length +
-    " أسئلة (" + percent + "٪).";
+  if (quizProgressBar) {
+    quizProgressBar.style.width = percent + "%";
+  }
+
+  if (quizProgressText) {
+    quizProgressText.textContent =
+      "جاوبت صح على " + correctSet.size +
+      " من " + questions.length +
+      " أسئلة (" + percent + "٪).";
+  }
 }
 
 document.getElementById("nextQuestion").addEventListener("click", async () => {
