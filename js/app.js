@@ -133,10 +133,11 @@ await window.registerWithFirebase(
   }
 });
 
-
 document.getElementById("startBtn").addEventListener("click", () => {
+  updateLearningProgressBar();
   showPage("dashboardPage");
 });
+
 
 
 function getLearningProgressKey() {
