@@ -40,6 +40,8 @@
 /* حركة خروج ناعمة مع توهج أزرق */
 .login-page.robot-transition-out .login-robot {
   animation: robotExit 1300ms cubic-bezier(.45, 0, .2, 1) forwards;
+  position: relative;
+  z-index: 9999;
 }
 
 @keyframes robotExit {
