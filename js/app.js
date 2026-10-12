@@ -121,9 +121,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
   showPage("dashboardPage");
 });
 
-
-javascript
-document.querySelectorAll("[data-action]").forEach(button =>
+document.querySelectorAll("[data-action]").forEach(button => {
   button.addEventListener("click", async () => {
     const a = button.dataset.action;
 
@@ -165,8 +163,9 @@ document.querySelectorAll("[data-action]").forEach(button =>
     } else if (a === "add") {
       notify("تقدر تضيف دروس جديدة من ملفات المشروع.");
     }
-  })
-);
+  });
+});
+
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
 document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("reviewPage"));
 const questions=[
