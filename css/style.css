@@ -42,10 +42,28 @@
   animation: robotExit 1300ms cubic-bezier(.45, 0, .2, 1) forwards;
 }
 
-.login-page.robot-transition-out .login-circle {
-  animation: circleExit 1300ms cubic-bezier(.45, 0, .2, 1) forwards;
+
+.login-page.robot-transition-out .login-robot {
+  animation: robotExit 1300ms cubic-bezier(.45, 0, .2, 1) forwards;
+  will-change: transform, opacity, filter;
+  position: relative;
+  z-index: 2;
 }
 
+.login-page.robot-transition-out .login-art {
+  isolation: isolate;
+}
+
+.login-page.robot-transition-out .login-robot {
+  filter:
+    drop-shadow(0 0 12px #168bff)
+    drop-shadow(0 0 30px #168bffb3)
+    drop-shadow(0 15px 25px #061d4380);
+  -webkit-filter:
+    drop-shadow(0 0 12px #168bff)
+    drop-shadow(0 0 30px #168bffb3)
+    drop-shadow(0 15px 25px #061d4380);
+}
 
 @keyframes robotExit {
   0% {
