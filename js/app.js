@@ -287,6 +287,7 @@ function updateProgress() {
   }
 }
 
+
 document.getElementById("nextQuestion").addEventListener("click", async () => {
   if (!answered) {
     notify("اختار إجابة الأول يا بطل!");
@@ -301,31 +302,36 @@ document.getElementById("nextQuestion").addEventListener("click", async () => {
 
   const score = correctSet.size;
   const total = questions.length;
+  const questionBox = document.querySelector("#reviewPage .review-question");
+  const completionScreen = document.getElementById("reviewCompletion");
+  const completionScore = document.getElementById("completionScore");
 
   try {
     await window.saveQuizAttempt(score, total);
 
     sendResultToSheet(score, total);
 
-    notify(
-      "خلصت المراجعة! إجاباتك الصح " + score + " من " + total + "."
-    );
+    completionScore.textContent = score + " من " + total;
 
-    qIndex = 0;
-    correctSet.clear();
-    updateProgress();
-    renderQuestion();
+    questionBox.hidden = true;
+    completionScreen.hidden = false;
 
+    updateLearningProgressBar();
   } catch (error) {
     console.error("Quiz submission error:", error);
 
     if (error.code === "permission-denied") {
-      notify("أنت أكملت الاختبار بالفعل، ولا يمكن تكراره.");
+      notify("تم تسجيل إكمال المراجعة من قبل.");
     } else {
       notify("لم نتمكن من حفظ النتيجة. تأكد من الاتصال بالإنترنت وحاول مرة أخرى.");
     }
   }
 });
+
+document.getElementById("backToDashboardAfterReview").addEventListener("click", () => {
+  showPage("dashboardPage");
+});
+
 const answers=[
  {keys:["إيدي","ايدي","أطراف","صوابع","اصابع","أصابع"],text:"افرد صوابعك بشكل مريح وخليها تلامس الكورة، وادفعها لتحت برفق. بلاش تضربها براحة إيدك."},
  {keys:["أبص","ابص","بص","قدامي","الملعب","الأرض","الارض"],text:"حاول تبص لقدام عشان تشوف الملعب وأصحابك، ومش لازم تفضل باصص للكورة طول الوقت."},
