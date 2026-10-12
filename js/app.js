@@ -138,11 +138,74 @@ document.getElementById("startBtn").addEventListener("click", () => {
   showPage("dashboardPage");
 });
 
+
+function getLearningProgressKey() {
+  const studentId = localStorage.getItem("basketballStudentId") || "guest";
+  return "basketballLearningProgress_" + studentId;
+}
+
+function loadLearningProgress() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem(getLearningProgressKey()) || "[]"
+    );
+    return Array.isArray(saved) ? saved : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function markLearningSection(section) {
+  const completedSections = loadLearningProgress();
+
+  if (!completedSections.includes(section)) {
+    completedSections.push(section);
+    localStorage.setItem(
+      getLearningProgressKey(),
+      JSON.stringify(completedSections)
+    );
+  }
+
+  updateLearningProgressBar();
+}
+
+function updateLearningProgressBar() {
+  const completedSections = loadLearningProgress();
+
+  const weights = {
+    lessons: 30,
+    review: 30,
+    chat: 40
+  };
+
+  const percent = completedSections.reduce(
+    (total, section) => total + (weights[section] || 0),
+    0
+  );
+
+  const progressBar = document.getElementById("progressBar");
+  const progressText = document.getElementById("progressText");
+
+  if (progressBar) {
+    progressBar.style.width = percent + "%";
+  }
+
+  if (progressText) {
+    progressText.textContent =
+      percent === 0
+        ? "أنجز أول قسم لتبدأ رحلتك!"
+        : "أنجزت " + percent + "٪ من تقدمك التعليمي.";
+  }
+}
+
+updateLearningProgressBar();
+
 document.querySelectorAll("[data-action]").forEach(button => {
   button.addEventListener("click", async () => {
     const a = button.dataset.action;
 
     if (a === "lessons") {
+      markLearningSection("lessons");
       showPage("lessonsPage");
 
     } else if (a === "open-review") {
@@ -157,6 +220,7 @@ document.querySelectorAll("[data-action]").forEach(button => {
         if (completed) {
           notify("أنت أكملت مراجعة مهارة التنطيط بالفعل، ولا يمكن تكرار الاختبار.");
         } else {
+          markLearningSection("review");
           showPage("reviewPage");
           renderQuestion();
         }
@@ -166,6 +230,7 @@ document.querySelectorAll("[data-action]").forEach(button => {
       }
 
     } else if (a === "open-chat") {
+      markLearningSection("chat");
       showPage("chatPage");
 
     } else if (a === "dashboard") {
