@@ -4,9 +4,15 @@ function notify(message){toast.textContent=message;toast.classList.add("show");c
 function showPage(id){pages.forEach(page=>page.classList.toggle("active",page.id===id));window.scrollTo({top:0,behavior:"smooth"})}
 setTimeout(()=>{if(document.getElementById("splashPage").classList.contains("active"))showPage("loginPage")},1800);
 document.getElementById("showExistingLogin").addEventListener("click", () => {
-  const box = document.getElementById("existingLoginBox");
-  box.hidden = !box.hidden;
+  document.getElementById("loginForm").hidden = true;
+  document.getElementById("existingLoginBox").hidden = false;
 });
+
+document.getElementById("backToRegister").addEventListener("click", () => {
+  document.getElementById("existingLoginBox").hidden = true;
+  document.getElementById("loginForm").hidden = false;
+});
+
 
 async function showWelcomeWithRobotTransition() {
   const loginPage = document.getElementById("loginPage");
