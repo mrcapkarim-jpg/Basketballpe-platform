@@ -258,6 +258,7 @@ document.querySelectorAll("[data-action]").forEach(button => {
 
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
 document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("continueSkillPage"));
+document.getElementById("finishSkillBtn").addEventListener("click",()=>showPage("welcomePage"));
 const questions=[
  {q:"أحط إيدي إزاي على الكورة؟",options:["براحة إيدي كلها","بأطراف صوابعي","بقبضة إيدي"],correct:1,explanation:"برافو يا بطل! أطراف الصوابع بتساعدك تتحكم في الكورة."},
  {q:"وأنا بنطط، أبص فين؟",options:["قدامي وأتابع الملعب","للأرض طول الوقت","أغمّض عيني"],correct:0,explanation:"ممتاز! ارفع راسك عشان تشوف أصحابك والملعب."},
