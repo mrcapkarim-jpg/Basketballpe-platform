@@ -46,17 +46,23 @@
   animation: circleExit 1300ms cubic-bezier(.45, 0, .2, 1) forwards;
 }
 
+
 @keyframes robotExit {
   0% {
     transform: scaleX(-1) translateX(0) scale(1);
     opacity: 1;
     filter: drop-shadow(0 15px 25px #061d4380);
+    -webkit-filter: drop-shadow(0 15px 25px #061d4380);
   }
 
   30% {
     transform: scaleX(-1) translateX(12vw) scale(1.02);
     opacity: 1;
     filter:
+      drop-shadow(0 0 10px #168bff)
+      drop-shadow(0 0 25px #168bffb3)
+      drop-shadow(0 15px 25px #061d4380);
+    -webkit-filter:
       drop-shadow(0 0 10px #168bff)
       drop-shadow(0 0 25px #168bffb3)
       drop-shadow(0 15px 25px #061d4380);
@@ -68,12 +74,16 @@
     filter:
       drop-shadow(0 0 18px #168bff)
       drop-shadow(0 0 42px #168bffb3);
+    -webkit-filter:
+      drop-shadow(0 0 18px #168bff)
+      drop-shadow(0 0 42px #168bffb3);
   }
 
   100% {
     transform: scaleX(-1) translateX(110vw) scale(1.1);
     opacity: 0;
     filter: drop-shadow(0 0 25px #168bff);
+    -webkit-filter: drop-shadow(0 0 25px #168bff);
   }
 }
 
