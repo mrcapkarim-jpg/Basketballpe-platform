@@ -268,7 +268,45 @@
         <div class="lesson-detail-copy"><h2>خليك بطل التنطيط!</h2><ul><li>اثنِ ركبتيك قليلًا وخليك متوازن.</li><li>استخدم أطراف صوابعك، مش راحة إيدك.</li><li>ارفع راسك وبص لقدام.</li><li>ابدأ ببطء، وبعدها زوّد السرعة بالتدريج.</li></ul><div class="lesson-detail-actions"><button id="goReviewBtn" class="btn btn-orange">يلا نكمل المهارة ←</button><button class="btn btn-light" data-action="open-chat">اسأل صديق المعلم</button></div></div>
       </div>
     </section>
+    
+    <!-- صفحة استكمال مهارة التنطيط -->
+    <section id="continueSkillPage" class="content-page page">
+      <header class="content-header">
+        <button class="back-btn" data-action="lesson-detail">→</button>
+        <div>
+          <h1>يلا نكمل المهارة!</h1>
+          <p>شاهد الصورة وطبّق الخطوات بنفسك.</p>
+        </div>
+        <span class="header-ball">🏀</span>
+      </header>
+
+      <div class="review-layout">
+        <div class="review-question">
+          <div class="question-visual">
+            <img
+              src="images/dribbling-practice.png"
+              alt="صورة توضيحية لاستكمال مهارة التنطيط"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"
+            >
+            <div class="image-placeholder">
+              ارفع صورة استكمال مهارة التنطيط هنا
+              <br>
+              <small>images/dribbling-practice.png</small>
+            </div>
+          </div>
+
+          <h2>دلوقتي جه دورك يا بطل! 🏀</h2>
+          <p>اثنِ ركبتيك، واستخدم أطراف صوابعك، وارفع رأسك وأنت بتنطط الكرة.</p>
+
+          <button id="finishSkillBtn" class="btn btn-orange">
+            إنهاء المراجعة ←
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- صفحة شرح المهارة والمراجعة -->
+
     <section id="reviewPage" class="content-page page">
       <header class="content-header">
         <button class="back-btn" data-action="dashboard">→</button>
