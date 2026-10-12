@@ -559,3 +559,57 @@
     height: 105px;
   }
 }
+
+/* دوائر نسب التقدم على بطاقات الصفحة الرئيسية */
+.dashboard-cards .feature-text {
+  position: relative;
+  padding-left: 8px;
+}
+
+.dashboard-cards .progress-percent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #d9f5ff;
+  border: 2px solid #8bdcf5;
+  color: #167da0;
+  font-size: 14px;
+  font-weight: 900;
+  direction: ltr;
+  box-shadow: 0 3px 10px rgba(22, 125, 160, 0.12);
+}
+
+.dashboard-cards .feature-text .progress-percent {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+}
+
+.dashboard-cards .feature-text h2 {
+  padding-left: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .dashboard-cards .progress-percent {
+    width: 42px;
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .dashboard-cards .feature-text .progress-percent {
+    left: 10px;
+    top: 10px;
+  }
+
+  .dashboard-cards .feature-text h2 {
+    padding-left: 42px;
+  }
+}
