@@ -122,7 +122,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
 });
 
 
-```javascript
+javascript
 document.querySelectorAll("[data-action]").forEach(button =>
   button.addEventListener("click", async () => {
     const a = button.dataset.action;
@@ -186,7 +186,6 @@ function renderQuestion(){
  if(q.images)q.images.forEach((item,i)=>imageOptions.appendChild(makeAnswer(item[1],i,true,item[0])));else q.options.forEach((item,i)=>textOptions.appendChild(makeAnswer(item,i)));
  answered=false;
 }
-javascript
 function updateProgress() {
   const percent = Math.round((correctSet.size / questions.length) * 100);
 
