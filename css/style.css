@@ -36,6 +36,11 @@
   filter: drop-shadow(0 15px 25px #061d4380);
 }
 
+.login-page.robot-transition-out .login-art {
+  position: relative;
+  z-index: 9999;
+  overflow: visible;
+}
 
 /* حركة خروج ناعمة مع توهج أزرق */
 .login-page.robot-transition-out .login-robot {
