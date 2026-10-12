@@ -212,7 +212,7 @@ function updateProgress() {
 
     sendResultToSheet(score, total);
 
-    notify(`خلصت المراجعة! إجاباتك الصح ${score} من ${total}.`);
+    notify("خلصت المراجعة! إجاباتك الصح " + score + " من " + total + ".");
 
     qIndex = 0;
     correctSet.clear();
