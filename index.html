@@ -387,7 +387,107 @@
       </div>
     </section>
 
-    <div id="toast" class="toast" role="status"></div>
+    
+<!-- صفحة الملف الشخصي وترتيب الطلاب -->
+<section id="studentProfilePage" class="content-page page">
+  <header class="content-header">
+    <button class="back-btn" type="button" onclick="showPage('dashboardPage')">→</button>
+    <div>
+      <h1>ملفي الشخصي</h1>
+      <p>تقدمك التعليمي وترتيبك بين زملائك</p>
+    </div>
+    <span class="header-ball">🏀</span>
+  </header>
+
+  <div class="student-profile-layout">
+
+    <!-- بطاقة بيانات الطالب -->
+    <div class="student-hero-card">
+      <div class="student-portrait">
+        <img
+          src="images/student-profile.png"
+          alt="صورة الطالب"
+          onerror="this.style.display='none'"
+        >
+        <img
+          class="student-wreath"
+          src="images/gold-wreath.png"
+          alt=""
+          onerror="this.style.display='none'"
+        >
+      </div>
+
+      <div class="student-hero-info">
+        <h2 id="profileStudentName">الطالب</h2>
+        <p id="profileStudentClass">الصف الدراسي</p>
+        <div class="student-progress-pill">
+          <span>⭐</span>
+          <strong id="profileProgressPercent">0%</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- جدول ترتيب المدرسة -->
+    <div class="leaderboard-grid">
+
+      <section class="leaderboard-card school-leaderboard">
+        <header class="leaderboard-heading">
+          <span>🏫</span>
+          <h2>ترتيب المدرسة</h2>
+          <span class="leaderboard-count">أفضل 12 طالبًا</span>
+        </header>
+
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>النسبة</th>
+                <th>الفصل</th>
+                <th>الاسم</th>
+                <th>الترتيب</th>
+              </tr>
+            </thead>
+            <tbody id="schoolLeaderboardBody">
+              <tr>
+                <td colspan="4">جارٍ تحميل ترتيب المدرسة...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- جدول ترتيب الفصل -->
+      <section class="leaderboard-card class-leaderboard">
+        <header class="leaderboard-heading">
+          <span>👥</span>
+          <h2>ترتيب الفصل</h2>
+          <span id="profileSectionLabel" class="leaderboard-count">فصلي</span>
+        </header>
+
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>النسبة</th>
+                <th>الاسم</th>
+                <th>الترتيب</th>
+              </tr>
+            </thead>
+            <tbody id="classLeaderboardBody">
+              <tr>
+                <td colspan="3">جارٍ تحميل ترتيب الفصل...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<div id="toast" class="toast" role="status"></div>
+
   </main>
   <script type="module" src="js/firebase-auth.js"></script>
   <script src="js/app.js"></script>
