@@ -736,3 +736,274 @@
     min-height: 280px;
   }
 }
+
+/* ===== صفحة الملف الشخصي وترتيب الطلاب ===== */
+
+#studentProfilePage {
+  direction: rtl;
+  background: #eef4f8;
+  color: #17375f;
+  padding: 20px;
+  gap: 20px;
+}
+
+#studentProfilePage .content-header {
+  width: 100%;
+}
+
+.student-profile-layout {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.student-hero-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px;
+  min-height: 220px;
+  border-radius: 28px;
+  background: linear-gradient(125deg, #123b78, #2457a0);
+  color: #fff;
+  box-shadow: 0 14px 35px #12345a25;
+}
+
+.student-hero-card::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  left: -65px;
+  bottom: -155px;
+  border: 30px solid #ffffff12;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.student-portrait {
+  position: relative;
+  flex: 0 0 155px;
+  width: 155px;
+  height: 155px;
+  display: grid;
+  place-items: center;
+}
+
+.student-portrait > img:first-child {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.student-portrait .student-wreath {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.student-hero-info {
+  position: relative;
+  z-index: 1;
+}
+
+.student-hero-info h2 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 900;
+}
+
+.student-hero-info p {
+  margin: 0 0 18px;
+  color: #e0ecff;
+  font-size: 15px;
+}
+
+.student-progress-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px;
+  border: 1px solid #f4c65e;
+  border-radius: 30px;
+  background: #ffffff12;
+  color: #ffe4a0;
+}
+
+.student-progress-pill strong {
+  font-size: 19px;
+}
+
+.leaderboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.leaderboard-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dce7f0;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 10px 28px #183c6010;
+}
+
+.leaderboard-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  padding: 18px;
+  background: linear-gradient(120deg, #17478f, #2457a0);
+  color: #fff;
+}
+
+.leaderboard-heading > span:first-child {
+  font-size: 23px;
+}
+
+.leaderboard-heading h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.leaderboard-count {
+  margin-right: auto;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #ffffff1c;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.leaderboard-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 13px;
+}
+
+.leaderboard-table th {
+  padding: 13px 8px;
+  background: #f3f7fb;
+  color: #526a83;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.leaderboard-table td {
+  padding: 13px 8px;
+  border-bottom: 1px solid #edf1f5;
+  color: #24415f;
+  white-space: nowrap;
+}
+
+.leaderboard-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.leaderboard-table .current-student-row td {
+  background: #fff3cf;
+  color: #17375f;
+  font-weight: 900;
+}
+
+.leaderboard-table .current-student-row td:first-child {
+  box-shadow: inset -4px 0 #e7ad28;
+}
+
+.leaderboard-table .rank-medal {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+.leaderboard-table .rank-number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #eaf0f6;
+  color: #34516f;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.leaderboard-table .progress-value {
+  color: #16815b;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  #studentProfilePage {
+    padding: 14px;
+  }
+
+  .student-hero-card {
+    gap: 12px;
+    padding: 20px 14px;
+    min-height: 175px;
+    border-radius: 22px;
+  }
+
+  .student-portrait {
+    flex-basis: 112px;
+    width: 112px;
+    height: 112px;
+  }
+
+  .student-portrait > img:first-child {
+    width: 80px;
+    height: 80px;
+  }
+
+  .student-hero-info h2 {
+    font-size: 21px;
+  }
+
+  .student-hero-info p {
+    font-size: 13px;
+  }
+
+  .leaderboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .leaderboard-heading {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .student-hero-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .student-progress-pill {
+    justify-content: center;
+  }
+}
