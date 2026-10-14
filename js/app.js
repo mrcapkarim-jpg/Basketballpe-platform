@@ -8,6 +8,39 @@ document.getElementById("showExistingLogin").addEventListener("click", () => {
   document.getElementById("existingLoginBox").hidden = false;
 });
 
+const openStudentProfileBtn = document.getElementById("openStudentProfile");
+
+if (openStudentProfileBtn) {
+  openStudentProfileBtn.addEventListener("click", () => {
+    const name =
+      localStorage.getItem("basketballStudentName") || "الطالب";
+
+    const className =
+      localStorage.getItem("basketballClassName") || "الصف الدراسي";
+
+    const section =
+      localStorage.getItem("basketballStudentSection") || "";
+
+    const profileName = document.getElementById("profileStudentName");
+    const profileClass = document.getElementById("profileStudentClass");
+    const sectionLabel = document.getElementById("profileSectionLabel");
+
+    if (profileName) profileName.textContent = name;
+
+    if (profileClass) {
+      profileClass.textContent = section
+        ? className + " — فصل " + section
+        : className;
+    }
+
+    if (sectionLabel) {
+      sectionLabel.textContent = section || "فصلي";
+    }
+
+    showPage("studentProfilePage");
+  });
+}
+
 document.getElementById("backToRegister").addEventListener("click", () => {
   document.getElementById("existingLoginBox").hidden = true;
   document.getElementById("loginForm").hidden = false;
