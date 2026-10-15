@@ -735,13 +735,14 @@ async function sendQuestion(question) {
     }
 
   } catch (error) {
-    console.error("Chat assistant error:", error);
+  console.error("Chat assistant error:", error);
 
-    addMessage(
-      "معلش يا بطل، مش قادر أوصل للمساعد دلوقتي. جرّب كمان شوية. 🏀",
-      "bot"
-    );
-  } finally {
+  addMessage(
+    "حصل خطأ: " + error.message,
+    "bot"
+  );
+}
+  finally {
     input.disabled = false;
     if (sendButton) sendButton.disabled = false;
     input.focus();
