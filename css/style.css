@@ -1078,3 +1078,15 @@
     object-fit: contain;
   }
 }
+.chat-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gemini-logo {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
