@@ -682,7 +682,18 @@ async function sendQuestion(question) {
   const clean = question.trim();
   if (!clean) return;
 
-  addMessage(clean, "user");
+  
+addMessage(clean, "user");
+
+if (!window.chatHistory) {
+  window.chatHistory = [];
+}
+
+window.chatHistory.push({
+  role: "user",
+  text: clean
+});
+
 
   const input = document.getElementById("chatInput");
   input.value = "";
@@ -703,10 +714,11 @@ async function sendQuestion(question) {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: clean
-        })
+        },     
+body: JSON.stringify({
+  message: clean,
+  history: (window.chatHistory || []).slice(0, -1)
+})
       }
     );
 
@@ -724,6 +736,7 @@ async function sendQuestion(question) {
       ".message.bot:last-child"
     );
 
+    
     if (
       lastBotMessage &&
       lastBotMessage.textContent ===
@@ -733,6 +746,11 @@ async function sendQuestion(question) {
     } else {
       addMessage(data.reply, "bot");
     }
+
+    window.chatHistory.push({
+      role: "model",
+      text: data.reply
+    });
 
   } catch (error) {
   console.error("Chat assistant error:", error);
