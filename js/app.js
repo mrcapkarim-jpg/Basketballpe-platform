@@ -25,7 +25,7 @@ function updateStudentGenderPortrait(genderFromFirebase) {
 
   if (dashboardPortrait) {
     dashboardPortrait.src = isGirl
-      ? "images/student-profile1girl.png"
+      ? "images/student-profile1girl.PNG"
       : "images/student-profile1.png";
 
     dashboardPortrait.alt = isGirl
