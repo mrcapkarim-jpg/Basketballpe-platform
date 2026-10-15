@@ -1149,3 +1149,42 @@
   flex-shrink: 0;
   margin: 0;
 }
+
+/* صورة الطالب في لوحة التحكم */
+.dashboard-student-portrait {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+  border: 2px solid #f4a51c;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(23, 71, 143, 0.15);
+}
+
+/* الاسم والصف بجوار الصورة */
+.dashboard-student-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  text-align: right;
+}
+
+.dashboard-student-info b,
+.dashboard-student-info small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .dashboard-student-portrait {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+}
