@@ -1061,3 +1061,34 @@
   font-weight: 800;
   line-height: 1;
 }
+
+/* إصلاح بطاقة الملف الشخصي على الموبايل */
+@media (max-width: 600px) {
+  #studentProfilePage .student-portrait {
+    flex: 0 0 145px;
+    width: 145px;
+    height: 145px;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  #studentProfilePage .student-portrait > img:first-child {
+    width: 88px;
+    height: 88px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
+
+  #studentProfilePage .student-portrait .student-wreath {
+    width: 145px;
+    height: 145px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+}
