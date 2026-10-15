@@ -788,9 +788,9 @@
 
 .student-portrait {
   position: relative;
-  flex: 0 0 190px;
-  width: 190px;
-  height: 190px;
+  flex: 0 0 230px;
+  width: 230px;
+  height: 230px;
   display: grid;
   place-items: center;
   isolation: isolate;
