@@ -1017,3 +1017,47 @@
     justify-content: center;
   }
 }
+
+.rank-medal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 900;
+  border: 2px solid;
+}
+
+.rank-gold {
+  color: #805500;
+  background: linear-gradient(145deg, #fff0a6, #e5ac24);
+  border-color: #c89116;
+  box-shadow: 0 2px 8px #e5ac2440;
+}
+
+.rank-silver {
+  color: #424b58;
+  background: linear-gradient(145deg, #ffffff, #c4cbd4);
+  border-color: #9ca6b3;
+}
+
+.rank-bronze {
+  color: #713b20;
+  background: linear-gradient(145deg, #f5c09a, #b96b3b);
+  border-color: #9b542e;
+}
+
+.rank-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #d7a52b;
+  background: #173a70;
+  color: #fff;
+  font-weight: 800;
+  line-height: 1;
+}
