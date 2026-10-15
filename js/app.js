@@ -713,8 +713,11 @@ async function sendQuestion(question) {
     const data = await response.json();
 
     if (!response.ok || !data.reply) {
-      throw new Error(data.error || "تعذر الحصول على الإجابة");
-    }
+  throw new Error(
+    "HTTP " + response.status + " | " +
+    JSON.stringify(data)
+  );
+}
 
     const messages = document.getElementById("chatMessages");
     const lastBotMessage = messages.querySelector(
