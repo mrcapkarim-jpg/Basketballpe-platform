@@ -104,7 +104,8 @@ localStorage.setItem("basketballStudentName", student.name);
 localStorage.setItem("basketballClassName", student.className);
 localStorage.setItem("basketballStudentSection", student.studentSection);
 localStorage.setItem("basketballStudentGender", student.studentGender || "");
-
+updateStudentGenderPortrait(student.studentGender);
+    
 await restoreSavedLearningProgress();
 document.getElementById("studentName").textContent = student.name;
 document.getElementById("studentClass").textContent = "الصف " + student.className;
