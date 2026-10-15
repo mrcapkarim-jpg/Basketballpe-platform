@@ -110,6 +110,7 @@ window.saveQuizAttempt = async function(score, total) {
   });
 };
 
+
 window.saveLeaderboardProgress = async function(progress) {
   const user = auth.currentUser;
 
@@ -125,15 +126,27 @@ window.saveLeaderboardProgress = async function(progress) {
   }
 
   const student = studentSnapshot.data();
+  const leaderboardRef = doc(db, "leaderboard", user.uid);
+  const leaderboardSnapshot = await getDoc(leaderboardRef);
 
-  await setDoc(doc(db, "leaderboard", user.uid), {
+  const currentProgress = leaderboardSnapshot.exists()
+    ? Number(leaderboardSnapshot.data().progress) || 0
+    : 0;
+
+  const newProgress = Math.max(
+    currentProgress,
+    Math.max(0, Math.min(100, Number(progress) || 0))
+  );
+
+  await setDoc(leaderboardRef, {
     name: student.name,
     className: student.className,
     studentSection: student.studentSection || "",
-    progress: Math.max(0, Math.min(100, Number(progress) || 0)),
+    progress: newProgress,
     updatedAt: serverTimestamp()
   });
 };
+
 
 window.getLeaderboardData = async function() {
   const user = auth.currentUser;
