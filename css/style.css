@@ -1074,8 +1074,8 @@
   }
 
   #studentProfilePage .student-portrait > img:first-child {
-    width: 88px;
-    height: 88px;
+    width: 150px;
+    height: 150px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
