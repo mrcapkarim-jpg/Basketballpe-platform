@@ -78,13 +78,13 @@ document.getElementById("existingLoginForm").addEventListener("submit", async ev
 
 const result = await window.loginWithFirebase(id, password);
 const student = result.student;
-    await restoreSavedLearningProgress();
 
 localStorage.setItem("basketballStudentId", student.studentId);
 localStorage.setItem("basketballStudentName", student.name);
 localStorage.setItem("basketballClassName", student.className);
 localStorage.setItem("basketballStudentSection", student.studentSection);
 
+await restoreSavedLearningProgress();
 document.getElementById("studentName").textContent = student.name;
 document.getElementById("studentClass").textContent = "الصف " + student.className;
 
