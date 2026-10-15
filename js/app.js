@@ -1,19 +1,37 @@
 const pages=[...document.querySelectorAll(".page")];
 
-function updateStudentGenderPortrait(genderFromFirebase) {
-  const portrait = document.getElementById("studentGenderPortrait");
-  if (!portrait) return;
 
+function updateStudentGenderPortrait(genderFromFirebase) {
   const gender = genderFromFirebase ||
     localStorage.getItem("basketballStudentGender");
 
-  portrait.src = gender === "girl"
-    ? "images/student-girl.png"
-    : "images/student-boy.png";
+  const isGirl = gender === "girl";
 
-  portrait.alt = gender === "girl"
-    ? "صورة الطالبة"
-    : "صورة الطالب";
+  // صورة الطالب في الملف الشخصي
+  const portrait = document.getElementById("studentGenderPortrait");
+
+  if (portrait) {
+    portrait.src = isGirl
+      ? "images/student-girl.png"
+      : "images/student-boy.png";
+
+    portrait.alt = isGirl
+      ? "صورة الطالبة"
+      : "صورة الطالب";
+  }
+
+  // صورة الطالب بجانب اسمه في Dashboard
+  const dashboardPortrait = document.getElementById("dashboardStudentPortrait");
+
+  if (dashboardPortrait) {
+    dashboardPortrait.src = isGirl
+      ? "images/student-profile1girl.png"
+      : "images/student-profile1.png";
+
+    dashboardPortrait.alt = isGirl
+      ? "صورة الطالبة"
+      : "صورة الطالب";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", updateStudentGenderPortrait);
