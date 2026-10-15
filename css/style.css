@@ -1121,6 +1121,7 @@
   flex-shrink: 0;
 }
 
+
 .chat-header .gemini-brand {
   display: inline-flex;
   align-items: center;
@@ -1132,12 +1133,19 @@
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
+  margin-inline-start: auto;
 }
 
 .chat-header .gemini-logo {
   display: block;
-  width: 44px;
-  height: 44px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   flex-shrink: 0;
+}
+
+.chat-header .chat-info,
+.chat-header .chat-close {
+  flex-shrink: 0;
+  margin: 0;
 }
