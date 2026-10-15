@@ -1184,7 +1184,7 @@
 
 @media (max-width: 600px) {
   #openStudentProfile {
-    width: 100%;
+    width: 75%;
     min-width: 0;
     box-sizing: border-box;
     padding: 10px 14px;
