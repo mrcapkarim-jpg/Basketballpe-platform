@@ -78,6 +78,7 @@ document.getElementById("existingLoginForm").addEventListener("submit", async ev
 
 const result = await window.loginWithFirebase(id, password);
 const student = result.student;
+    await restoreSavedLearningProgress();
 
 localStorage.setItem("basketballStudentId", student.studentId);
 localStorage.setItem("basketballStudentName", student.name);
@@ -211,6 +212,30 @@ function markLearningSection(section) {
   updateLearningProgressBar();
 }
 
+async function restoreSavedLearningProgress() {
+  try {
+    if (typeof window.getSavedLearningProgress !== "function") {
+      return;
+    }
+
+    const savedProgress = await window.getSavedLearningProgress();
+
+    const studentId = localStorage.getItem("basketballStudentId") || "guest";
+    const progressKey = "basketballSavedProgress_" + studentId;
+
+    const previousSaved = Number(localStorage.getItem(progressKey) || 0);
+
+    localStorage.setItem(
+      progressKey,
+      String(Math.max(previousSaved, savedProgress))
+    );
+
+    updateLearningProgressBar();
+  } catch (error) {
+    console.error("Restore learning progress error:", error);
+  }
+}
+
 function updateLearningProgressBar() {
   const completedSections = loadLearningProgress();
 
@@ -232,7 +257,14 @@ const reviewPoints = Number(
   localStorage.getItem(reviewKey) || 0
 );
 
-const percent = Math.min(100, sectionProgress + reviewPoints);
+const localPercent = Math.min(100, sectionProgress + reviewPoints);
+
+const studentId = localStorage.getItem("basketballStudentId") || "guest";
+const savedPercent = Number(
+  localStorage.getItem("basketballSavedProgress_" + studentId) || 0
+);
+
+const percent = Math.max(localPercent, savedPercent);
 
 
   const progressBar = document.getElementById("progressBar");
