@@ -231,13 +231,27 @@ function updateLearningProgressBar() {
     progressBar.style.width = percent + "%";
   }
 
-  if (progressText) {
-    progressText.textContent =
-      percent === 0
-        ? "أنجز أول قسم لتبدأ رحلتك!"
-        : "أنجزت " + percent + "٪ من تقدمك التعليمي.";
-  }
+  
+if (progressText) {
+  progressText.textContent =
+    percent === 0
+      ? "أنجز أول قسم لتبدأ رحلتك!"
+      : "أنجزت " + percent + "٪ من تقدمك التعليمي.";
 }
+
+const profileProgressPercent = document.getElementById("profileProgressPercent");
+
+if (profileProgressPercent) {
+  profileProgressPercent.textContent = percent + "%";
+}
+
+if (typeof window.saveLeaderboardProgress === "function") {
+  window.saveLeaderboardProgress(percent).catch(error => {
+    console.error("Save leaderboard progress error:", error);
+  });
+}
+}
+
 
 updateLearningProgressBar();
 
