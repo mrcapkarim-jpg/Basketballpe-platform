@@ -1,10 +1,13 @@
 const pages=[...document.querySelectorAll(".page")];
 
 function updateStudentGenderPortrait() {
+function updateStudentGenderPortrait(genderFromFirebase) {
   const portrait = document.getElementById("studentGenderPortrait");
   if (!portrait) return;
 
-  const gender = localStorage.getItem("basketballStudentGender");
+  const gender = genderFromFirebase ||
+    localStorage.getItem("basketballStudentGender");
+
   portrait.src = gender === "girl"
     ? "images/student-girl.png"
     : "images/student-boy.png";
