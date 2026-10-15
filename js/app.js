@@ -185,6 +185,7 @@ await window.registerWithFirebase(
     localStorage.setItem("basketballStudentName", name);
     localStorage.setItem("basketballClassName", className);
     localStorage.setItem("basketballStudentSection", studentSection);
+    localStorage.setItem("basketballStudentGender", studentGender);
 
     document.getElementById("studentName").textContent = name;
     document.getElementById("studentClass").textContent = "الصف " + className;
