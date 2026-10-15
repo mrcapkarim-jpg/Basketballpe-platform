@@ -38,6 +38,7 @@ if (openStudentProfileBtn) {
     }
 
     showPage("studentProfilePage");
+    loadStudentLeaderboards();
   });
 }
 
