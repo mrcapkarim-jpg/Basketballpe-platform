@@ -786,13 +786,11 @@
   pointer-events: none;
 }
 
-
-
 .student-portrait {
   position: relative;
-  flex: 0 0 190px;
-  width: 190px;
-  height: 190px;
+  flex: 0 0 220px;
+  width: 220px;
+  height: 220px;
   display: grid;
   place-items: center;
   isolation: isolate;
@@ -801,10 +799,10 @@
 .student-portrait > img:first-child {
   position: absolute;
   z-index: 1;
-  width: 118px;
-  height: 118px;
+  width: 140px;
+  height: 140px;
   left: 50%;
-  top: 50%;
+  top: 48%;
   transform: translate(-50%, -50%);
   object-fit: cover;
   object-position: center;
@@ -815,8 +813,8 @@
 .student-portrait .student-wreath {
   position: absolute;
   z-index: 2;
-  width: 190px;
-  height: 190px;
+  width: 220px;
+  height: 220px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
