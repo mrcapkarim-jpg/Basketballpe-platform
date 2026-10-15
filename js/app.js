@@ -216,27 +216,23 @@ function updateLearningProgressBar() {
 
   const weights = {
     lessons: 30,
-    review: 30,
-    chat: 40
-  };
-
-  
-  const weights = {
-    lessons: 30,
     chat: 40
   };
 
   const sectionProgress = completedSections.reduce(
-    (total, section) => total + (weights[section] || 0),
-    0
-  );
+  (total, section) => total + (weights[section] || 0),
+  0
+);
 
-  const reviewPoints = Number(
-    localStorage.getItem("basketballReviewPoints_" +
-      (localStorage.getItem("basketballStudentId") || "guest")) || 0
-  );
+const reviewKey =
+  "basketballReviewPoints_" +
+  (localStorage.getItem("basketballStudentId") || "guest");
 
-  const percent = Math.min(100, sectionProgress + reviewPoints);
+const reviewPoints = Number(
+  localStorage.getItem(reviewKey) || 0
+);
+
+const percent = Math.min(100, sectionProgress + reviewPoints);
 
 
   const progressBar = document.getElementById("progressBar");
