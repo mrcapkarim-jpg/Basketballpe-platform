@@ -83,14 +83,16 @@ localStorage.setItem("basketballStudentId", student.studentId);
 localStorage.setItem("basketballStudentName", student.name);
 localStorage.setItem("basketballClassName", student.className);
 localStorage.setItem("basketballStudentSection", student.studentSection);
+localStorage.setItem("basketballStudentGender", student.studentGender || "");
 
 await restoreSavedLearningProgress();
 document.getElementById("studentName").textContent = student.name;
 document.getElementById("studentClass").textContent = "الصف " + student.className;
 
 await showWelcomeWithRobotTransition();
-    
-    notify("تم التحقق من الحساب بنجاح.");
+
+notify("تم التحقق من الحساب بنجاح.");
+
   } catch (error) {
     console.error("Login error:", error);
     notify("الرقم القومي أو كلمة المرور غير صحيحة.");
@@ -101,6 +103,7 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
 
   const id = document.getElementById("studentId").value.trim();
   const name = document.getElementById("studentNameInput").value.trim();
+  const studentGender = document.getElementById("studentGenderInput").value;
   const className = document.getElementById("classNameInput").value;
   const studentSection = document.getElementById("studentSectionInput").value.trim();
   const password = document.getElementById("studentPasswordInput").value;
@@ -116,10 +119,10 @@ if (password !== confirmPassword) {
     return;
   }
 
-  if (!name || !className || !studentSection) {
-    notify("اكتب اسم الطالب واختر الصف واكتب الفصل.");
-    return;
-  }
+  if (!name || !studentGender || !className || !studentSection) {
+  notify("اكتب اسم الطالب واختر النوع والصف واكتب الفصل.");
+  return;
+}
   if (password.length < 8) {
   notify("كلمة المرور لازم تكون 8 أحرف أو أرقام على الأقل.");
   return;
@@ -143,8 +146,10 @@ await window.registerWithFirebase(
   password,
   name,
   className,
-  studentSection
-);await fetch(GOOGLE_SHEET_URL, {
+  studentSection,
+  studentGender
+);
+    await fetch(GOOGLE_SHEET_URL, {
   method: "POST",
   mode: "no-cors",
   headers: {
