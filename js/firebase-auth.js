@@ -166,3 +166,20 @@ window.getLeaderboardData = async function() {
 window.getCurrentStudentUid = function() {
   return auth.currentUser ? auth.currentUser.uid : null;
 };
+window.getSavedLearningProgress = async function() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("NOT_LOGGED_IN");
+  }
+
+  const snapshot = await getDoc(
+    doc(db, "leaderboard", user.uid)
+  );
+
+  if (!snapshot.exists()) {
+    return 0;
+  }
+
+  return Number(snapshot.data().progress) || 0;
+};
