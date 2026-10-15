@@ -1302,3 +1302,14 @@
     font-size: 21px;
   }
 }
+
+@media (max-width: 560px) {
+  .chat-header .gemini-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .chat-header .gemini-brand {
+    font-size: 9px;
+  }
+}
