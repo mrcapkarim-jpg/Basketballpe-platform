@@ -37,7 +37,8 @@ window.registerWithFirebase = async function(
   password,
   name,
   className,
-  studentSection
+  studentSection,
+  studentGender
 ) {
   const email = `${studentId}@karimbasketball.com`;
 
@@ -51,7 +52,8 @@ window.registerWithFirebase = async function(
     studentId,
     name,
     className,
-    studentSection
+    studentSection,
+    studentGender
   });
 
   return credential;
