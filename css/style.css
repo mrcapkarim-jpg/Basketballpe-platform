@@ -799,8 +799,8 @@
 .student-portrait > img:first-child {
   position: absolute;
   z-index: 1;
-  width: 118px;
-  height: 118px;
+  width: 132px;
+  height: 132px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
