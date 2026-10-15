@@ -12,7 +12,9 @@ import {
   doc,
   setDoc,
   getDoc,
-  serverTimestamp
+  serverTimestamp,
+  collection,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -131,4 +133,19 @@ window.saveLeaderboardProgress = async function(progress) {
     progress: Math.max(0, Math.min(100, Number(progress) || 0)),
     updatedAt: serverTimestamp()
   });
+};
+
+window.getLeaderboardData = async function() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("NOT_LOGGED_IN");
+  }
+
+  const snapshot = await getDocs(collection(db, "leaderboard"));
+
+  return snapshot.docs.map(item => ({
+    id: item.id,
+    ...item.data()
+  }));
 };
