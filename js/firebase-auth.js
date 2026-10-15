@@ -11,7 +11,8 @@ import {
   getFirestore,
   doc,
   setDoc,
-  getDoc
+  getDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -104,5 +105,30 @@ window.saveQuizAttempt = async function(score, total) {
     completed: true,
     score: score,
     total: total
+  });
+};
+
+window.saveLeaderboardProgress = async function(progress) {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("NOT_LOGGED_IN");
+  }
+
+  const studentRef = doc(db, "students", user.uid);
+  const studentSnapshot = await getDoc(studentRef);
+
+  if (!studentSnapshot.exists()) {
+    throw new Error("STUDENT_PROFILE_NOT_FOUND");
+  }
+
+  const student = studentSnapshot.data();
+
+  await setDoc(doc(db, "leaderboard", user.uid), {
+    name: student.name,
+    className: student.className,
+    studentSection: student.studentSection || "",
+    progress: Math.max(0, Math.min(100, Number(progress) || 0)),
+    updatedAt: serverTimestamp()
   });
 };
