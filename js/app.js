@@ -491,3 +491,112 @@ function checkStudentDuplicate(studentId, attempt = 1) {
     document.body.appendChild(script);
   });
 }
+
+async function loadStudentLeaderboards() {
+  const schoolBody = document.getElementById("schoolLeaderboardBody");
+  const classBody = document.getElementById("classLeaderboardBody");
+
+  if (!schoolBody || !classBody) return;
+
+  schoolBody.innerHTML = '<tr><td colspan="4">جارٍ تحميل الترتيب...</td></tr>';
+  classBody.innerHTML = '<tr><td colspan="3">جارٍ تحميل الترتيب...</td></tr>';
+
+  try {
+    if (
+      typeof window.getLeaderboardData !== "function" ||
+      typeof window.getCurrentStudentUid !== "function"
+    ) {
+      throw new Error("LEADERBOARD_FUNCTIONS_NOT_READY");
+    }
+
+    const students = await window.getLeaderboardData();
+    const currentUid = window.getCurrentStudentUid();
+
+    const currentClass =
+      localStorage.getItem("basketballClassName") || "";
+
+    const currentSection =
+      localStorage.getItem("basketballStudentSection") || "";
+
+    const sortStudents = list =>
+      list.sort((a, b) => Number(b.progress || 0) - Number(a.progress || 0));
+
+    const schoolList = sortStudents([...students]);
+
+    const classList = sortStudents(
+      students.filter(student =>
+        student.className === currentClass &&
+        String(student.studentSection || "") === currentSection
+      )
+    );
+
+    function renderList(list, body, limit, columns) {
+      const visible = list.slice(0, limit);
+      const current = list.find(student => student.id === currentUid);
+
+      if (current && !visible.some(student => student.id === currentUid)) {
+        visible.push(current);
+      }
+
+      if (!visible.length) {
+        body.innerHTML =
+          `<tr><td colspan="${columns}">لا يوجد طلاب مسجلون في الترتيب حتى الآن</td></tr>`;
+        return;
+      }
+
+      body.innerHTML = visible.map(student => {
+        const rank = list.findIndex(item => item.id === student.id) + 1;
+        const progress = Math.round(Number(student.progress) || 0);
+        const isCurrent = student.id === currentUid;
+
+        let rankContent = "—";
+
+        if (progress > 0) {
+          if (rank === 1) rankContent = "🥇";
+          else if (rank === 2) rankContent = "🥈";
+          else if (rank === 3) rankContent = "🥉";
+          else rankContent = String(rank);
+        }
+
+        const name = String(student.name || "طالب").replace(/[&<>"']/g, char => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[char]);
+
+        const className = String(student.className || "").replace(/[&<>"']/g, char => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[char]);
+
+        return `
+          <tr class="${isCurrent ? "current-student-row" : ""}">
+            <td><span class="progress-value">${progress}%</span></td>
+            ${columns === 4 ? `<td>${className}</td>` : ""}
+            <td>${name}${isCurrent ? " (أنت)" : ""}</td>
+            <td>
+              ${progress > 0
+                ? `<span class="rank-number">${rankContent}</span>`
+                : "—"}
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    renderList(schoolList, schoolBody, 12, 4);
+    renderList(classList, classBody, 7, 3);
+
+  } catch (error) {
+    console.error("Leaderboard loading error:", error);
+    schoolBody.innerHTML =
+      '<tr><td colspan="4">تعذر تحميل ترتيب المدرسة</td></tr>';
+    classBody.innerHTML =
+      '<tr><td colspan="3">تعذر تحميل ترتيب الفصل</td></tr>';
+  }
+}
