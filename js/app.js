@@ -1,6 +1,5 @@
 const pages=[...document.querySelectorAll(".page")];
 
-function updateStudentGenderPortrait() {
 function updateStudentGenderPortrait(genderFromFirebase) {
   const portrait = document.getElementById("studentGenderPortrait");
   if (!portrait) return;
