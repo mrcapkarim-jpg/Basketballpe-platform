@@ -1,4 +1,21 @@
 const pages=[...document.querySelectorAll(".page")];
+
+function updateStudentGenderPortrait() {
+  const portrait = document.getElementById("studentGenderPortrait");
+  if (!portrait) return;
+
+  const gender = localStorage.getItem("basketballStudentGender");
+  portrait.src = gender === "girl"
+    ? "images/student-girl.png"
+    : "images/student-boy.png";
+
+  portrait.alt = gender === "girl"
+    ? "صورة الطالبة"
+    : "صورة الطالب";
+}
+
+document.addEventListener("DOMContentLoaded", updateStudentGenderPortrait);
+
 const toast=document.getElementById("toast");let toastTimer;
 function notify(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2600)}
 function showPage(id){pages.forEach(page=>page.classList.toggle("active",page.id===id));window.scrollTo({top:0,behavior:"smooth"})}
