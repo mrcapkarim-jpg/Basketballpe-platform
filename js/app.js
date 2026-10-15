@@ -677,12 +677,102 @@ function getBotReply(question) {
 }
 
 function addMessage(text,who){const el=document.createElement("div");el.className="message "+who;el.textContent=text;document.getElementById("chatMessages").appendChild(el);el.scrollIntoView({behavior:"smooth",block:"nearest"})}
-function sendQuestion(question){const clean=question.trim();if(!clean)return;addMessage(clean,"user");document.getElementById("chatInput").value="";setTimeout(()=>addMessage(getBotReply(clean),"bot"),300)}
-document.querySelectorAll("#suggestedQuestions button").forEach(button=>button.addEventListener("click",()=>sendQuestion(button.textContent)));
-document.getElementById("chatForm").addEventListener("submit",event=>{event.preventDefault();sendQuestion(document.getElementById("chatInput").value)});
-document.getElementById("chatInfo").addEventListener("click",()=>notify("المساعد نسخة تجريبية بإجابات تعليمية مبرمجة، وليس متصلًا حاليًا بذكاء اصطناعي مباشر."));
-const video=document.getElementById("dribbleVideo"),videoPlaceholder=document.getElementById("videoPlaceholder");
-video.addEventListener("loadeddata",()=>videoPlaceholder.style.display="none");video.addEventListener("error",()=>videoPlaceholder.style.display="flex");
+
+async function sendQuestion(question) {
+  const clean = question.trim();
+  if (!clean) return;
+
+  addMessage(clean, "user");
+
+  const input = document.getElementById("chatInput");
+  input.value = "";
+
+  const sendButton = document.querySelector(
+    '#chatForm button[type="submit"]'
+  );
+
+  if (sendButton) sendButton.disabled = true;
+  input.disabled = true;
+
+  addMessage("ثواني يا بطل، بفكر في إجابة سؤالك... 🏀", "bot");
+
+  try {
+    const response = await fetch(
+      "https://basketball-ai-assistant.mr-capkarim.workers.dev/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: clean
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.reply) {
+      throw new Error(data.error || "تعذر الحصول على الإجابة");
+    }
+
+    const messages = document.getElementById("chatMessages");
+    const lastBotMessage = messages.querySelector(
+      ".message.bot:last-child"
+    );
+
+    if (
+      lastBotMessage &&
+      lastBotMessage.textContent ===
+        "ثواني يا بطل، بفكر في إجابة سؤالك... 🏀"
+    ) {
+      lastBotMessage.textContent = data.reply;
+    } else {
+      addMessage(data.reply, "bot");
+    }
+
+  } catch (error) {
+    console.error("Chat assistant error:", error);
+
+    addMessage(
+      "معلش يا بطل، مش قادر أوصل للمساعد دلوقتي. جرّب كمان شوية. 🏀",
+      "bot"
+    );
+  } finally {
+    input.disabled = false;
+    if (sendButton) sendButton.disabled = false;
+    input.focus();
+  }
+}
+
+document.querySelectorAll("#suggestedQuestions button").forEach(button => {
+  button.addEventListener("click", () => {
+    sendQuestion(button.textContent);
+  });
+});
+
+document.getElementById("chatForm").addEventListener("submit", event => {
+  event.preventDefault();
+  sendQuestion(document.getElementById("chatInput").value);
+});
+
+document.getElementById("chatInfo").addEventListener("click", () => {
+  notify(
+    "المساعد متصل بالذكاء الاصطناعي للإجابة عن أسئلتك التعليمية."
+  );
+});
+
+const video = document.getElementById("dribbleVideo");
+const videoPlaceholder = document.getElementById("videoPlaceholder");
+
+video.addEventListener("loadeddata", () => {
+  videoPlaceholder.style.display = "none";
+});
+
+video.addEventListener("error", () => {
+  videoPlaceholder.style.display = "flex";
+});
+
 renderQuestion();
 
 const GOOGLE_SHEET_URL = "https://misty-sea-ab60p-basketball-bridgee.mr-capkarim.workers.dev/";
