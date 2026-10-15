@@ -550,14 +550,25 @@ async function loadStudentLeaderboards() {
         const progress = Math.round(Number(student.progress) || 0);
         const isCurrent = student.id === currentUid;
 
-        let rankContent = "—";
+        
+let rankContent = "—";
+let rankClass = "";
 
-        if (progress > 0) {
-          if (rank === 1) rankContent = "🥇";
-          else if (rank === 2) rankContent = "🥈";
-          else if (rank === 3) rankContent = "🥉";
-          else rankContent = String(rank);
-        }
+if (progress > 0) {
+  if (rank === 1) {
+    rankContent = "1";
+    rankClass = "rank-medal rank-gold";
+  } else if (rank === 2) {
+    rankContent = "2";
+    rankClass = "rank-medal rank-silver";
+  } else if (rank === 3) {
+    rankContent = "3";
+    rankClass = "rank-medal rank-bronze";
+  } else {
+    rankContent = String(rank);
+    rankClass = "rank-number";
+  }
+}
 
         const name = String(student.name || "طالب").replace(/[&<>"']/g, char => ({
           "&": "&amp;",
@@ -582,8 +593,8 @@ async function loadStudentLeaderboards() {
             <td>${name}${isCurrent ? " (أنت)" : ""}</td>
             <td>
               ${progress > 0
-                ? `<span class="rank-number">${rankContent}</span>`
-                : "—"}
+                 ? `<span class="${rankClass}">${rankContent}</span>`
+                 : "—"}
             </td>
           </tr>
         `;
