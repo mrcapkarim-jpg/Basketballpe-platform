@@ -220,10 +220,24 @@ function updateLearningProgressBar() {
     chat: 40
   };
 
-  const percent = completedSections.reduce(
+  
+  const weights = {
+    lessons: 30,
+    chat: 40
+  };
+
+  const sectionProgress = completedSections.reduce(
     (total, section) => total + (weights[section] || 0),
     0
   );
+
+  const reviewPoints = Number(
+    localStorage.getItem("basketballReviewPoints_" +
+      (localStorage.getItem("basketballStudentId") || "guest")) || 0
+  );
+
+  const percent = Math.min(100, sectionProgress + reviewPoints);
+
 
   const progressBar = document.getElementById("progressBar");
   const progressText = document.getElementById("progressText");
@@ -276,7 +290,7 @@ document.querySelectorAll("[data-action]").forEach(button => {
         if (completed) {
           notify("أنت أكملت مراجعة مهارة التنطيط بالفعل، ولا يمكن تكرار الاختبار.");
         } else {
-          markLearningSection("review");
+          
           showPage("reviewPage");
           renderQuestion();
         }
@@ -307,13 +321,55 @@ document.querySelectorAll("[data-action]").forEach(button => {
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
 document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("continueSkillPage"));
 document.getElementById("finishSkillBtn").addEventListener("click",()=>showPage("dashboardPage"));
-const questions=[
- {q:"أحط إيدي إزاي على الكورة؟",options:["براحة إيدي كلها","بأطراف صوابعي","بقبضة إيدي"],correct:1,explanation:"برافو يا بطل! أطراف الصوابع بتساعدك تتحكم في الكورة."},
- {q:"وأنا بنطط، أبص فين؟",options:["قدامي وأتابع الملعب","للأرض طول الوقت","أغمّض عيني"],correct:0,explanation:"ممتاز! ارفع راسك عشان تشوف أصحابك والملعب."},
- {q:"أثني ركبتي ليه وأنا بنطط؟",options:["عشان أطول","عشان أبقى متوازن وأتحرك بسهولة","مش محتاج أثنيها"],correct:1,explanation:"صح! ثني الركبتين البسيط بيساعدك تتوازن وتتحكم في الكورة."},
- {q:"أبدأ أتمرن بإيه؟",options:["أجري بأقصى سرعة","أنطط وأنا باصص للأرض","أنطط ببطء وأتحكم في الكورة"],correct:2,explanation:"عاش! ابدأ براحة، ولما تتحكم في الكورة زوّد السرعة بالتدريج."},
- {q:"اختار الصورة اللي بتوضح وضع اليد المناسب للتنطيط",images:[["dribble-step-1.jpg","الصورة الأولى"],["dribble-step-2.jpg","الصورة الثانية"],["dribble-step-3.jpg","الصورة الثالثة"],["dribble-step-4.jpg","الصورة الرابعة"]],correct:0,explanation:"أحسنت! اختار وضعًا مريحًا بأصابع مفتوحة للتحكم في الكرة، وخلّي دفع الكرة من الأصابع والرسغ."}
+
+const questions = [
+  {
+    q: "بستخدم إيدي الشمال أثناء الدريبل عشان:",
+    options: [
+      "أطلع الكورة خارج الملعب",
+      "أحمي بيها الكورة",
+      "ملهاش لازمة"
+    ],
+    correct: 1,
+    explanation: "برافو يا بطل! استخدام إيدك الشمال بيساعدك تحمي الكورة من المنافس وتتحكم فيها."
+  },
+  {
+    q: "أحط إيدي إزاي على الكورة؟",
+    options: ["براحة إيدي كلها", "بأطراف صوابعي", "بقبضة إيدي"],
+    correct: 1,
+    explanation: "برافو يا بطل! أطراف الصوابع بتساعدك تتحكم في الكورة."
+  },
+  {
+    q: "وأنا بنطط، أبص فين؟",
+    options: ["قدامي وأتابع الملعب", "للأرض طول الوقت", "أغمّض عيني"],
+    correct: 0,
+    explanation: "ممتاز! ارفع راسك عشان تشوف أصحابك والملعب."
+  },
+  {
+    q: "أثني ركبتي ليه وأنا بنطط؟",
+    options: ["عشان أطول", "عشان أبقى متوازن وأتحرك بسهولة", "مش محتاج أثنيها"],
+    correct: 1,
+    explanation: "صح! ثني الركبتين البسيط بيساعدك تتوازن وتتحكم في الكورة."
+  },
+  {
+    q: "أبدأ أتمرن بإيه؟",
+    options: ["أجري بأقصى سرعة", "أنطط وأنا باصص للأرض", "أنطط ببطء وأتحكم في الكورة"],
+    correct: 2,
+    explanation: "عاش! ابدأ براحة، ولما تتحكم في الكورة زوّد السرعة بالتدريج."
+  },
+  {
+    q: "اختار الصورة اللي بتوضح وضع اليد المناسب للتنطيط",
+    images: [
+      ["dribble-step-1.jpg", "الصورة الأولى"],
+      ["dribble-step-2.jpg", "الصورة الثانية"],
+      ["dribble-step-3.jpg", "الصورة الثالثة"],
+      ["dribble-step-4.jpg", "الصورة الرابعة"]
+    ],
+    correct: 0,
+    explanation: "أحسنت! استخدم أصابعك والرسغ للتحكم في الكرة."
+  }
 ];
+
 let qIndex=0,answered=false;const correctSet=new Set();
 function renderQuestion(){
  const q=questions[qIndex];document.getElementById("reviewQuestion").textContent=q.q;document.getElementById("reviewFeedback").textContent="";
@@ -326,23 +382,20 @@ function renderQuestion(){
 }
 
 function updateProgress() {
-  const percent = Math.round((correctSet.size / questions.length) * 100);
+  const points = correctSet.size * 5;
 
   const quizProgressBar = document.getElementById("quizProgressBar");
   const quizProgressText = document.getElementById("quizProgressText");
 
   if (quizProgressBar) {
-    quizProgressBar.style.width = percent + "%";
+    quizProgressBar.style.width = points + "%";
   }
 
   if (quizProgressText) {
     quizProgressText.textContent =
-      "جاوبت صح على " + correctSet.size +
-      " من " + questions.length +
-      " أسئلة (" + percent + "٪).";
+      "تقدم مراجعة المهارات: " + points + "٪ من 30٪.";
   }
 }
-
 
 document.getElementById("nextQuestion").addEventListener("click", async () => {
   if (!answered) {
@@ -364,6 +417,12 @@ document.getElementById("nextQuestion").addEventListener("click", async () => {
 
   try {
     await window.saveQuizAttempt(score, total);
+
+    const reviewKey =
+      "basketballReviewPoints_" +
+      (localStorage.getItem("basketballStudentId") || "guest");
+
+    localStorage.setItem(reviewKey, String(score * 5));
 
     sendResultToSheet(score, total);
 
