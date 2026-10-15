@@ -149,3 +149,7 @@ window.getLeaderboardData = async function() {
     ...item.data()
   }));
 };
+
+window.getCurrentStudentUid = function() {
+  return auth.currentUser ? auth.currentUser.uid : null;
+};
