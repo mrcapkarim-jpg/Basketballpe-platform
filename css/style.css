@@ -1181,13 +1181,44 @@
   overflow-wrap: anywhere;
 }
 
+
 @media (max-width: 600px) {
+  #openStudentProfile {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
   .dashboard-student-portrait {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  .dashboard-student-info {
+    flex: 1;
+    min-width: 0;
+    gap: 6px;
+    text-align: right;
+  }
+
+  .dashboard-student-info b {
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .dashboard-student-info small {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #64748b;
+    white-space: normal;
   }
 }
+
 
 /* تكبير صورة الطالب في الملف الشخصي على الموبايل */
 @media (max-width: 600px) {
