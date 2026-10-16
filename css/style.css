@@ -1358,3 +1358,30 @@
     font-size: 16px;
   }
 }
+
+
+@media screen and (min-width: 761px) {
+  #studentProfilePage .student-hero-card {
+    min-height: 250px !important;
+    height: 260px !important;
+    padding: 25px 30px !important;
+    gap: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  #studentProfilePage .student-portrait {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+    height: 220px !important;
+  }
+}
+
+/* تكبير الصورة الشخصية داخل الملف الشخصي */
+@media screen and (min-width: 761px) {
+  #studentProfilePage .student-portrait {
+    flex: 0 0 190px !important;
+    width: 190px !important;
+    height: 190px !important;
+  }
+}
+
