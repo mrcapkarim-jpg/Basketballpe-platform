@@ -1325,3 +1325,36 @@
     gap: 2px;
   }
 }
+
+/* تصغير بطاقة الطالب على الكمبيوتر فقط */
+@media (min-width: 761px) {
+  #studentProfilePage .student-hero-card {
+    min-height: 175px;
+    padding: 14px 22px;
+    gap: 18px;
+  }
+
+  #studentProfilePage .student-portrait {
+    flex: 0 0 175px;
+    width: 175px;
+    height: 175px;
+  }
+
+  #studentProfilePage .student-hero-info h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  #studentProfilePage .student-hero-info p {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  #studentProfilePage .student-progress-pill {
+    padding: 6px 12px;
+  }
+
+  #studentProfilePage .student-progress-pill strong {
+    font-size: 16px;
+  }
+}
