@@ -1401,3 +1401,12 @@
   }
 }
 
+/* صور ميداليات ترتيب الطلاب */
+.leaderboard-table .rank-medal-image {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
