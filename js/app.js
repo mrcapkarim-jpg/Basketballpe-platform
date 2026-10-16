@@ -992,6 +992,38 @@ async function loadStudentLeaderboards() {
 
     const schoolList = sortStudents([...students]);
 
+const profileRankMedal = document.getElementById("profileRankMedal");
+const profileRankIndex = schoolList.findIndex(
+  student => student.id === currentUid
+);
+const profileRankStudent = schoolList[profileRankIndex];
+
+if (
+  profileRankMedal &&
+  profileRankStudent &&
+  Number(profileRankStudent.progress || 0) > 0 &&
+  profileRankIndex >= 0 &&
+  profileRankIndex < 3
+) {
+  const medalImages = [
+    "images/medal-1.png",
+    "images/medal-2.png",
+    "images/medal-3.png"
+  ];
+
+  profileRankMedal.innerHTML = `
+    <img
+      src="${medalImages[profileRankIndex]}"
+      alt="ترتيبك في المدرسة: المركز ${profileRankIndex + 1}"
+      class="profile-rank-medal-image"
+    >
+  `;
+  profileRankMedal.hidden = false;
+} else if (profileRankMedal) {
+  profileRankMedal.innerHTML = "";
+  profileRankMedal.hidden = true;
+}
+
     const classList = sortStudents(
       students.filter(student =>
         student.className === currentClass &&
