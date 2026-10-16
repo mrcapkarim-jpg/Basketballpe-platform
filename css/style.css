@@ -1385,3 +1385,19 @@
   }
 }
 
+/* توسيع مستطيل بيانات الطالب في الداش بورد - الكمبيوتر فقط */
+@media screen and (min-width: 761px) {
+  #openStudentProfile {
+    width: 360px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 14px 22px !important;
+    gap: 16px !important;
+  }
+
+  #openStudentProfile .dashboard-student-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+}
+
