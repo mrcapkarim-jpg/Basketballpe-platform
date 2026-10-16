@@ -1410,3 +1410,23 @@
   vertical-align: middle;
 }
 
+/* ميدالية ترتيب الطالب في بطاقة الملف الشخصي */
+#profileRankMedal {
+  margin: 8px 0;
+}
+
+#profileRankMedal .profile-rank-medal-image {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+/* ضبط الميدالية على الموبايل */
+@media (max-width: 760px) {
+  #profileRankMedal .profile-rank-medal-image {
+    width: 46px;
+    height: 46px;
+  }
+}
+
