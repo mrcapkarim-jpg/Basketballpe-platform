@@ -1018,20 +1018,16 @@ async function loadStudentLeaderboards() {
         const progress = Math.round(Number(student.progress) || 0);
         const isCurrent = student.id === currentUid;
 
-        
 let rankContent = "—";
 let rankClass = "";
 
 if (progress > 0) {
   if (rank === 1) {
-    rankContent = "1";
-    rankClass = "rank-medal rank-gold";
+    rankContent = '<img src="images/medal-1.png" alt="المركز الأول" class="rank-medal-image">';
   } else if (rank === 2) {
-    rankContent = "2";
-    rankClass = "rank-medal rank-silver";
+    rankContent = '<img src="images/medal-2.png" alt="المركز الثاني" class="rank-medal-image">';
   } else if (rank === 3) {
-    rankContent = "3";
-    rankClass = "rank-medal rank-bronze";
+    rankContent = '<img src="images/medal-3.png" alt="المركز الثالث" class="rank-medal-image">';
   } else {
     rankContent = String(rank);
     rankClass = "rank-number";
