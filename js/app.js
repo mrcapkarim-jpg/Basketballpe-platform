@@ -392,8 +392,17 @@ document.querySelectorAll("[data-action]").forEach(button => {
 });
 
 document.querySelectorAll("[data-lesson]").forEach(card=>card.addEventListener("click",()=>{const lesson=card.dataset.lesson;if(lesson==="dribble"){showPage("lessonDetailPage");return}notify("صفحة هذا الدرس جاهزة للتطوير لاحقًا.")}));
-document.getElementById("goReviewBtn").addEventListener("click",()=>showPage("continueSkillPage"));
-document.getElementById("finishSkillBtn").addEventListener("click",()=>showPage("dashboardPage"));
+document.getElementById("goReviewBtn").addEventListener("click", () => {
+  showPage("dribbleStoryPage");
+});
+
+document.getElementById("goComicBtn").addEventListener("click", () => {
+  showPage("continueSkillPage");
+});
+
+document.getElementById("finishSkillBtn").addEventListener("click", () => {
+  showPage("dashboardPage");
+});
 
 const questions = [
   {
